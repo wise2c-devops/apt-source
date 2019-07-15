@@ -11,8 +11,8 @@ before_install:
 
 env:
  global:
-   - KUBE_VERSION=1.15.0-00
-   - DOCKER_VERSION=5:18.09.7~3-0
+   - KUBE_VERSION=1.12.10-00
+   - DOCKER_VERSION=5:18.06.3~3-0
    - CEPH_VERSION=nautilus
  
 jobs:
