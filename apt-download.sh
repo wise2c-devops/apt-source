@@ -7,11 +7,11 @@ cd /tmp/debs
 apt-get install --assume-no $1 > apt-get-install.log
 first_line=`grep -n "The following additional packages will be installed:" apt-get-install.log |awk -F":" '{print $1}'`
 first_line=$[first_line+1]
-last_line=`grep -n " newly installed, " apt-get-install.log |awk -F":" '{print $1}'`
+last_line=`grep -n "The following NEW packages will be installed:" apt-get-install.log |awk -F":" '{print $1}'`
 last_line=$[last_line-1]
 sed -n "${first_line},${last_line} p" apt-get-install.log > download.log
 
-cat download.log |grep -v "Suggested packages:" |grep -v "The following NEW packages will be installed:" > deb-packages.log
+cat download.log |grep -v "Suggested packages:" > deb-packages.log
 deb_packages=`cat deb-packages.log`
 
 # remove the "|" string in the content
