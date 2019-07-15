@@ -10,14 +10,14 @@ first_line=$[first_line+1]
 last_line=`grep -n "Suggested packages:" dependance.log |awk -F":" '{print $1}'`
 last_line=$[last_line-1]
 sed -n "${first_line},${last_line} p" dependance.log > download.log
-echo '##### Download packages for $1 #####'
-echo '##### dependance.log begin #####'
+echo "##### Download packages for $1 #####"
+echo "##### dependance.log begin #####"
 cat dependance.log |grep -v 'Abort.'
-echo '##### dependance.log done #####'
-echo '##### The following packages will be download #####'
+echo "##### dependance.log done #####"
+echo "##### The following packages will be download #####"
 cat download.log
 apt-get download `cat download.log`
-echo '###### Downloading finished #####'
+echo "###### Downloading finished #####"
 rm -f dependance.log download.log
 
 cd ${current_path}
