@@ -4,19 +4,26 @@ rm -rf /tmp/debs
 mkdir -p /tmp/debs
 cd /tmp/debs
 
-apt-get install --assume-no $1 > dependance.log
-first_line=`grep -n "The following additional packages will be installed:" dependance.log |awk -F":" '{print $1}'`
+apt-get install --assume-no $1 > apt-get-install.log
+first_line=`grep -n "The following additional packages will be installed:" apt-get-install.log |awk -F":" '{print $1}'`
 first_line=$[first_line+1]
-last_line=`grep -n "Suggested packages:" dependance.log |awk -F":" '{print $1}'`
+last_line=`grep -n " newly installed, " apt-get-install.log |awk -F":" '{print $1}'`
 last_line=$[last_line-1]
-sed -n "${first_line},${last_line} p" dependance.log > download.log
+sed -n "${first_line},${last_line} p" apt-get-install.log > download.log
+
+cat download.log |grep -v "Suggested packages:" |grep -v "The following NEW packages will be installed:" > deb-packages.log
+deb_packages=`cat deb-packages.log`
+
+# remove the "|" string in the content
+deb_packages=${deb_packages//|/}
+
 echo "##### Download packages for $1 #####"
-echo "##### dependance.log begin #####"
-cat dependance.log |grep -v 'Abort.'
-echo "##### dependance.log done #####"
+echo "##### apt-get install return message begin #####"
+cat apt-get-install.log |grep -v 'Abort.'
+echo "##### apt-get install return message end #####"
 echo "##### The following packages will be download #####"
-cat download.log
-apt-get download `cat download.log`
+echo ${deb_packages}
+apt-get download ${deb_packages}
 echo "###### Downloading finished #####"
 rm -f dependance.log download.log
 
