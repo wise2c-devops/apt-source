@@ -12,7 +12,7 @@ before_install:
 env:
  global:
    - KUBE_VERSION=1.12.10-00
-   - DOCKER_VERSION=18.06.3~3-0
+   - DOCKER_VERSION=18.06.3~ce~3-0
    - CEPH_VERSION=nautilus
  
 jobs:
@@ -127,7 +127,7 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update &&
-         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-xenial' &&
+         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          cd /tmp/debs &&
          rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
@@ -151,7 +151,7 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update &&
-         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-bionic' &&
+         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          cd /tmp/debs &&
          rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
