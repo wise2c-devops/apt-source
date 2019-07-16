@@ -130,13 +130,13 @@ jobs:
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-xenial' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          cd /tmp/debs &&
-         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb
+         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
          apt-get download docker-ce=${DOCKER_VERSION}~ubuntu-xenial libseccomp2 &&
          apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
-         echo '##### list docker and kubernetes packages begin #####'
-         ls docker*.deb
-         ls kube*.deb
-         echo '##### list docker and kubernetes packages end #####'
+         echo '##### list docker and kubernetes packages begin #####' &&
+         ls docker*.deb &&
+         ls kube*.deb &&
+         echo '##### list docker and kubernetes packages end #####' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16 &&
          apt-ftparchive packages . > Packages &&
@@ -154,13 +154,13 @@ jobs:
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-bionic' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          cd /tmp/debs &&
-         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb
+         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
          apt-get download 'docker-ce=${DOCKER_VERSION}~ubuntu-bionic libseccomp2' &&
          apt-get download 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
-         echo '##### list docker and kubernetes packages begin #####'
-         ls docker*.deb
-         ls kube*.deb
-         echo '##### list docker and kubernetes packages end #####'
+         echo '##### list docker and kubernetes packages begin #####' &&
+         ls docker*.deb &&
+         ls kube*.deb &&
+         echo '##### list docker and kubernetes packages end #####' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          cd /root/debs/ubuntu18 &&
          apt-ftparchive packages . > Packages &&
