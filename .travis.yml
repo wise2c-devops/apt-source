@@ -131,7 +131,7 @@ jobs:
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          cd /tmp/debs &&
          rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
-         apt-get download docker-ce=${DOCKER_VERSION}~ubuntu-xenial &&
+         apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu-xenial &&
          apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls docker*.deb &&
@@ -155,7 +155,7 @@ jobs:
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          cd /tmp/debs &&
          rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
-         apt-get download docker-ce=${DOCKER_VERSION}~ubuntu-bionic &&
+         apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu-bionic &&
          apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls docker*.deb &&
