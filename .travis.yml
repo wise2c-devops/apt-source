@@ -12,7 +12,7 @@ before_install:
 env:
  global:
    - KUBE_VERSION=1.12.10-00
-   - DOCKER_VERSION=5:18.06.3~3-0
+   - DOCKER_VERSION=5:18.09.6~3-0
    - CEPH_VERSION=nautilus
  
 jobs:
@@ -129,6 +129,14 @@ jobs:
          apt-get update &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-xenial' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         cd /tmpdebs &&
+         echo '##### list docker and kubernetes packages begin #####'
+         ls docker.io*
+         ls kube*
+         echo '##### list docker and kubernetes packages end #####'
+         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb
+         apt-get download docker-ce=${DOCKER_VERSION}~ubuntu-xenial &&
+         apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16 &&
          apt-ftparchive packages . > Packages &&
@@ -145,6 +153,14 @@ jobs:
          apt-get update &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-bionic' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         cd /tmpdebs &&
+         echo '##### list docker and kubernetes packages begin #####'
+         ls docker.io*
+         ls kube*
+         echo '##### list docker and kubernetes packages end #####'
+         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb
+         apt-get download docker-ce=${DOCKER_VERSION}~ubuntu-xenial &&
+         apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          cd /root/debs/ubuntu18 &&
          apt-ftparchive packages . > Packages &&
