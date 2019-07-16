@@ -23,7 +23,7 @@ jobs:
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:16.04 bash -c
         "apt-get update &&
-         /root/apt-download.sh 'libseccomp2 python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common' &&
+         /root/apt-download.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          mkdir /root/debs/ubuntu16 &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
@@ -129,6 +129,14 @@ jobs:
          apt-get update &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-xenial' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         cd /tmp/debs &&
+         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
+         apt-get download docker-ce=${DOCKER_VERSION}~ubuntu-xenial &&
+         apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
+         echo '##### list docker and kubernetes packages begin #####' &&
+         ls docker*.deb &&
+         ls kube*.deb &&
+         echo '##### list docker and kubernetes packages end #####' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16 &&
          apt-ftparchive packages . > Packages &&
@@ -145,6 +153,14 @@ jobs:
          apt-get update &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-bionic' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         cd /tmp/debs &&
+         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
+         apt-get download docker-ce=${DOCKER_VERSION}~ubuntu-bionic &&
+         apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
+         echo '##### list docker and kubernetes packages begin #####' &&
+         ls docker*.deb &&
+         ls kube*.deb &&
+         echo '##### list docker and kubernetes packages end #####' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          cd /root/debs/ubuntu18 &&
          apt-ftparchive packages . > Packages &&
