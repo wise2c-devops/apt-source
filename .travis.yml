@@ -12,7 +12,7 @@ before_install:
 env:
  global:
    - KUBE_VERSION=1.12.10-00
-   - DOCKER_VERSION=5:18.09.6~3-0
+   - DOCKER_VERSION=5:18.09.7~3-0
    - CEPH_VERSION=nautilus
  
 jobs:
@@ -129,7 +129,7 @@ jobs:
          apt-get update &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-xenial' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
-         cd /tmpdebs &&
+         cd /tmp/debs &&
          echo '##### list docker and kubernetes packages begin #####'
          ls docker.io*
          ls kube*
@@ -153,7 +153,7 @@ jobs:
          apt-get update &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-bionic' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
-         cd /tmpdebs &&
+         cd /tmp/debs &&
          echo '##### list docker and kubernetes packages begin #####'
          ls docker.io*
          ls kube*
