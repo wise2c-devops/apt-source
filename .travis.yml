@@ -23,14 +23,11 @@ jobs:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:16.04 bash -c
-        "apt-get update &&
-         /root/apt-download.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
-         apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
+        "echo 'apt-get updating...' &&
+         apt-get update > build.log 2>&1 &&
+         /root/apt-download.sh 'apt-transport-https curl software-properties-common apt-utils python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
          mkdir /root/debs/ubuntu16 &&
-         mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
-         cd /root/debs/ubuntu16 &&
-         apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release"
+         mv /tmp/debs/*.deb /root/debs/ubuntu16"
       - docker build -t wise2c/apt-source:base16 .
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - docker push wise2c/apt-source:base16
@@ -40,14 +37,11 @@ jobs:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:18.04 bash -c
-        "apt-get update &&
-         /root/apt-download.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
-         apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
+        "echo 'apt-get updating...' &&
+         apt-get update > build.log 2>&1 &&
+         /root/apt-download.sh 'apt-transport-https curl software-properties-common apt-utils python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
          mkdir /root/debs/ubuntu18 &&
-         mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
-         cd /root/debs/ubuntu18 &&
-         apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release"
+         mv /tmp/debs/*.deb /root/debs/ubuntu18"
       - docker build -t wise2c/apt-source:base18 .
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - docker push wise2c/apt-source:base18
@@ -57,18 +51,16 @@ jobs:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:16.04 bash -c
-        "apt-get update &&
-         /root/apt-download.sh 'apt-transport-https curl software-properties-common apt-utils' &&
-         apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
+        "echo 'apt-get updating...' &&
+         apt-get update > build.log 2>&1 &&
+         apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
          curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - &&
          echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ xenial main | tee /etc/apt/sources.list.d/ceph.list &&
-         apt-get update &&
+         echo 'apt-get updating...' &&
+         apt-get update > build.log 2>&1 &&
          /root/apt-download.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
          mkdir /root/debs/ubuntu16 &&
-         mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
-         cd /root/debs/ubuntu16 &&
-         apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release"
+         mv /tmp/debs/*.deb /root/debs/ubuntu16"
       - sudo chmod -R 755 ${PWD}/debs
       - docker build -t wise2c/apt-source:ceph16 .
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -79,18 +71,16 @@ jobs:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:18.04 bash -c
-        "apt-get update &&
-         /root/apt-download.sh 'apt-transport-https curl software-properties-common apt-utils' &&
-         apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
+        "echo 'apt-get updating...' &&
+         apt-get update > build.log 2>&1 &&
+         apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
          curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - &&
          echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ bionic main | tee /etc/apt/sources.list.d/ceph.list &&
-         apt-get update &&
+         echo 'apt-get updating...' &&
+         apt-get update > build.log 2>&1 &&
          /root/apt-download.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
          mkdir /root/debs/ubuntu18 &&
-         mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
-         cd /root/debs/ubuntu18 &&
-         apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release"
+         mv /tmp/debs/*.deb /root/debs/ubuntu18"
       - sudo chmod -R 755 ${PWD}/debs
       - docker build -t wise2c/apt-source:ceph18 .
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -123,20 +113,18 @@ jobs:
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:16.04 bash -c
         "echo 'apt-get updating...' &&
          apt-get update > build.log 2>&1 &&
-         echo 'Install some packages...' &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
          curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&
          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
+         /root/apt-download.sh libseccomp2 &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          rm -f /root/debs/ubuntu16/docker.io*.deb &&
          cd /tmp/debs &&
-         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
-         apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu &&
-         apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
+         rm -f docker.io*.deb &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls docker*.deb &&
          ls kube*.deb &&
@@ -150,20 +138,18 @@ jobs:
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:18.04 bash -c
         "echo 'apt-get updating...' &&
          apt-get update > build.log 2>&1 &&
-         echo 'Install some packages...' &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
          curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&
          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
+         /root/apt-download.sh libseccomp2 &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          rm -f /root/debs/ubuntu18/docker.io*.deb &&
          cd /tmp/debs &&
-         rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
-         apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu &&
-         apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
+         rm -f docker.io*.deb &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls docker*.deb &&
          ls kube*.deb &&
