@@ -126,8 +126,8 @@ jobs:
          apt-get download libseccomp2 &&
          rm -f docker.io*.deb &&
          echo '##### list docker and kubernetes packages begin #####' &&
-         ls docker*.deb &&
-         ls kube*.deb &&
+         ls |grep docker &&
+         ls |grep kube &&
          echo '##### list docker and kubernetes packages end #####' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16 &&
@@ -151,8 +151,8 @@ jobs:
          apt-get download libseccomp2 &&
          rm -f docker.io*.deb &&
          echo '##### list docker and kubernetes packages begin #####' &&
-         ls docker*.deb &&
-         ls kube*.deb &&
+         ls |grep docker &&
+         ls |grep kube &&
          echo '##### list docker and kubernetes packages end #####' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          cd /root/debs/ubuntu18 &&
