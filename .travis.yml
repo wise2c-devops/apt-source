@@ -147,6 +147,7 @@ jobs:
          cp /root/breeze ./ &&
          gpg2 --batch --gen-key breeze &&
          gpg2 --no-default-keyring --secret-keyring ./breeze.sec --keyring ./breeze.pub --list-secret-keys &&
+         gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
          gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release"
 
       - >
@@ -177,6 +178,7 @@ jobs:
          cp /root/breeze ./ &&
          gpg2 --batch --gen-key breeze &&
          gpg2 --no-default-keyring --secret-keyring ./breeze.sec --keyring ./breeze.pub --list-secret-keys &&
+         gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
          gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release"
       - sudo chmod -R 755 ${PWD}/debs
       - docker build -t wise2c/apt-source:$TRAVIS_BRANCH .
