@@ -17,6 +17,7 @@ env:
    - CEPH_VERSION=nautilus
  
 jobs:
+  include:
     - stage: Base and Ceph Packages
       script:
       - sudo chmod +x ${PWD}/apt-download.sh
