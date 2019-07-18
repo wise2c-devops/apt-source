@@ -132,6 +132,7 @@ jobs:
          apt-get update > build.log 2>&1 &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         rm -f /root/debs/ubuntu16/docker.io*.deb &&
          cd /tmp/debs &&
          rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
          apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu &&
@@ -158,6 +159,7 @@ jobs:
          apt-get update > build.log 2>&1 &&
          /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         rm -f /root/debs/ubuntu18/docker.io*.deb &&
          cd /tmp/debs &&
          rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
          apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu &&
