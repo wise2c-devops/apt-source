@@ -20,7 +20,7 @@ jobs:
   include:
     - stage: Base and Ceph Packages
       script:
-      - sudo chmod +x ${PWD}/apt-download.sh
+      - sudo chmod +x ${PWD}/apt-download-without-version.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:16.04 bash -c
         "apt-get update &&
@@ -34,7 +34,7 @@ jobs:
 
     - stage: Base and Ceph Packages
       script:
-      - sudo chmod +x ${PWD}/apt-download.sh
+      - sudo chmod +x ${PWD}/apt-download-without-version.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
         "apt-get update &&
@@ -49,7 +49,7 @@ jobs:
 
     - stage: Base and Ceph Packages
       script:
-      - sudo chmod +x ${PWD}/apt-download.sh
+      - sudo chmod +x ${PWD}/apt-download-without-version.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:16.04 bash -c
         "apt-get update &&
@@ -69,7 +69,7 @@ jobs:
 
     - stage: Base and Ceph Packages
       script:
-      - sudo chmod +x ${PWD}/apt-download.sh
+      - sudo chmod +x ${PWD}/apt-download-without-version.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
         "apt-get update &&
