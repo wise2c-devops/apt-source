@@ -12,8 +12,8 @@ before_install:
 
 env:
  global:
-   - KUBE_VERSION=1.15.0-00
-   - DOCKER_VERSION=5:18.09.7~3-0
+   - KUBE_VERSION=1.13.8-00
+   - DOCKER_VERSION=18.06.3~ce~3-0
    - CEPH_VERSION=nautilus
  
 jobs:
@@ -128,11 +128,11 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
-         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-xenial' &&
+         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          cd /tmp/debs &&
          rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
-         apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu-xenial &&
+         apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu &&
          apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls docker*.deb &&
@@ -159,11 +159,11 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
-         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-bionic' &&
+         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu' &&
          /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          cd /tmp/debs &&
          rm -f docker.io*.deb kubelet*.deb kubectl*.deb kubeadm*.deb &&
-         apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu-bionic &&
+         apt-get download libseccomp2 docker-ce=${DOCKER_VERSION}~ubuntu &&
          apt-get download kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION} &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls docker*.deb &&
