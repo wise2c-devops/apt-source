@@ -8,6 +8,7 @@ services:
 before_install:
 - docker pull ubuntu:16.04
 - docker pull ubuntu:18.04
+- while sleep 5m; do echo "=====[ $SECONDS seconds, still building... ]====="; done &
 
 env:
  global:

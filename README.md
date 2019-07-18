@@ -29,6 +29,23 @@ deb http://apt-source-server-ip:2008/debs/ubuntu18 ./
 
 上面的 apt-source-server-ip 请写为上述服务器的真实IP地址
 
+然后下载Apt源的签名文件做导入：
+
+Ubuntu16系统用户：
+
+```
+curl -o breeze.pub http://apt-source-server-ip:2008/debs/ubuntu16/breeze.pub 
+apt-key add breeze.pub
+```
+
+Ubuntu18系统用户：
+```
+curl -o breeze.pub http://apt-source-server-ip:2008/debs/ubuntu18/breeze.pub
+apt-key add breeze.pub
+```
+
+上面的 apt-source-server-ip 请写为上述服务器的真实IP地址
+
 接着执行一次apt-get update命令后即可直接用 apt-get install命令命令安装相关软件了。例如：
 
 apt-get install docker-ce python-docker docker-compose
