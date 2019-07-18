@@ -126,9 +126,10 @@ jobs:
          cd /tmp/debs &&
          apt-get download libseccomp2 &&
          rm -f docker.io*.deb &&
-         echo '##### list deb packages begin #####' &&
-         ls *.deb &&
-         echo '##### list deb kubernetes packages end #####' &&
+         echo '##### list docker and kubernetes packages begin #####' &&
+         ls *.deb |grep docker &&
+         ls *.deb |grep kube &&
+         echo '##### list docker and kubernetes packages end #####' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16 &&
          apt-ftparchive packages . > Packages &&
@@ -151,9 +152,10 @@ jobs:
          cd /tmp/debs &&
          apt-get download libseccomp2 &&
          rm -f docker.io*.deb &&
-         echo '##### list deb packages begin #####' &&
-         ls *.deb &&
-         echo '##### list deb packages end #####' &&
+         echo '##### list docker and kubernetes packages begin #####' &&
+         ls *.deb |grep docker &&
+         ls *.deb |grep kube &&
+         echo '##### list docker and kubernetes packages end #####' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          cd /root/debs/ubuntu18 &&
          apt-ftparchive packages . > Packages &&
