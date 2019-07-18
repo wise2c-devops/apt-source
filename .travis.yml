@@ -182,6 +182,8 @@ jobs:
          cp ../ubuntu18/breeze.key ./ &&
          gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
          gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release &&
+         rm -f ../ubuntu18/breeze &&
+         rm -f ../ubuntu18/breeze.key &&
          rm -f ./breeze &&
          rm -f ./breeze.key"
 
