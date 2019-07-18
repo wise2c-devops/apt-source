@@ -121,7 +121,9 @@ jobs:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:16.04 bash -c
-        "apt-get update > build.log 2>&1 &&
+        "echo 'apt-get updating...' &&
+         apt-get update > build.log 2>&1 &&
+         echo 'Install some packages...' &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
          curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&
          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
@@ -141,18 +143,13 @@ jobs:
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16 &&
          apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release &&
-         apt-get install -y gnupg gnupg2 > build.log 2>&1 &&
-         echo wise2cbreeze > ./breeze.key &&
-         cp /root/breeze ./ &&
-         gpg2 --batch --gen-key breeze &&
-         gpg2 --no-default-keyring --secret-keyring ./breeze.sec --keyring ./breeze.pub --list-secret-keys &&
-         gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
-         gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release"
+         apt-ftparchive release . > Release"
 
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:18.04 bash -c
-        "apt-get update > build.log 2>&1 &&
+        "echo 'apt-get updating...' &&
+         apt-get update > build.log 2>&1 &&
+         echo 'Install some packages...' &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
          curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&
          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
@@ -172,14 +169,22 @@ jobs:
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          cd /root/debs/ubuntu18 &&
          apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release
+         apt-ftparchive release . > Release &&
          apt-get install -y gnupg gnupg2 > build.log 2>&1 &&
          echo wise2cbreeze > ./breeze.key &&
          cp /root/breeze ./ &&
          gpg2 --batch --gen-key breeze &&
          gpg2 --no-default-keyring --secret-keyring ./breeze.sec --keyring ./breeze.pub --list-secret-keys &&
          gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
-         gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release"
+         gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release &&
+         cd /root/debs/ubuntu16 &&
+         cp ../ubuntu18/breeze.pub ./ &&
+         cp ../ubuntu18/breeze.key ./ &&
+         gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
+         gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release &&
+         rm -f ./breeze &&
+         rm -f ./breeze.key"
+
       - sudo chmod -R 755 ${PWD}/debs
       - docker build -t wise2c/apt-source:$TRAVIS_BRANCH .
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
