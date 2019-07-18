@@ -22,7 +22,7 @@ jobs:
       script:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:16.04 bash -c
+        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:16.04 bash -c
         "apt-get update &&
          /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
@@ -36,7 +36,7 @@ jobs:
       script:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:18.04 bash -c
+        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
         "apt-get update &&
          /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
@@ -51,7 +51,7 @@ jobs:
       script:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:16.04 bash -c
+        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:16.04 bash -c
         "apt-get update &&
          /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
@@ -71,7 +71,7 @@ jobs:
       script:
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:18.04 bash -c
+        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
         "apt-get update &&
          /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
