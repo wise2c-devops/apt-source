@@ -8,8 +8,8 @@ Name-Comment: Wise2C Breeze
 Name-Email: peng.alan@gmail.com
 Expire-Date: 0
 Passphrase: wise2cbreeze
-%pubring wise2c.pub
-%secring wise2c.sec
+%pubring breeze.pub
+%secring breeze.sec
 # Do a commit here, so that we can later print "done"
 %commit
 %echo done
