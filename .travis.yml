@@ -142,7 +142,7 @@ jobs:
          cd /root/debs/ubuntu16 &&
          apt-ftparchive packages . > Packages &&
          apt-ftparchive release . > Release &&
-         apt-get install gnupg gnupg2 &&
+         apt-get install -y gnupg gnupg2 &&
          echo wise2cbreeze > ./breeze.key &&
          cp /root/breeze ./ &&
          gpg2 --batch --gen-key breeze &&
@@ -172,7 +172,7 @@ jobs:
          cd /root/debs/ubuntu18 &&
          apt-ftparchive packages . > Packages &&
          apt-ftparchive release . > Release
-         apt-get install gnupg gnupg2 &&
+         apt-get install -y gnupg gnupg2 &&
          echo wise2cbreeze > ./breeze.key &&
          cp /root/breeze ./ &&
          gpg2 --batch --gen-key breeze &&
