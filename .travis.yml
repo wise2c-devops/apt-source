@@ -143,7 +143,7 @@ jobs:
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16 &&
          apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release &&"
+         apt-ftparchive release . > Release"
 
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:18.04 bash -c
