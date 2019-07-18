@@ -23,7 +23,7 @@ jobs:
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:16.04 bash -c
         "apt-get update &&
-         /root/apt-download.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common' &&
+         /root/apt-download.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          mkdir /root/debs/ubuntu16 &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
@@ -40,7 +40,7 @@ jobs:
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:18.04 bash -c
         "apt-get update &&
-         /root/apt-download.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common' &&
+         /root/apt-download.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          mkdir /root/debs/ubuntu18 &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
@@ -119,7 +119,7 @@ jobs:
 
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:16.04 bash -c
+        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:16.04 bash -c
         "apt-get update &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&
@@ -140,10 +140,16 @@ jobs:
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16 &&
          apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release"
+         apt-ftparchive release . > Release &&
+         apt-get install gnupg gnupg2 &&
+         echo wise2cbreeze > ./breeze.key &&
+         cp /root/breeze ./ &&
+         gpg2 --batch --gen-key breeze &&
+         gpg2 --no-default-keyring --keyring ./breeze.pub --list-secret-keys
+         gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release"
 
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh ubuntu:18.04 bash -c
+        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:18.04 bash -c
         "apt-get update &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&
@@ -164,7 +170,13 @@ jobs:
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          cd /root/debs/ubuntu18 &&
          apt-ftparchive packages . > Packages &&
-         apt-ftparchive release . > Release"
+         apt-ftparchive release . > Release
+         apt-get install gnupg gnupg2 &&
+         echo wise2cbreeze > ./breeze.key &&
+         cp /root/breeze ./ &&
+         gpg2 --batch --gen-key breeze &&
+         gpg2 --no-default-keyring --keyring ./breeze.pub --list-secret-keys
+         gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release"
       - sudo chmod -R 755 ${PWD}/debs
       - docker build -t wise2c/apt-source:$TRAVIS_BRANCH .
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
