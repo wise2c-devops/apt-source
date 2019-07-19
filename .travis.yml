@@ -54,12 +54,13 @@ jobs:
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:16.04 bash -c
         "apt-get update &&
          /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' &&
+         mkdir /root/debs/ubuntu16 &&
+         mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - &&
          echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ xenial main | tee /etc/apt/sources.list.d/ceph.list &&
          apt-get update &&
          /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
-         mkdir /root/debs/ubuntu16 &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          cd /root/debs/ubuntu16"
       - sudo chmod -R 755 ${PWD}/debs
@@ -74,12 +75,13 @@ jobs:
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
         "apt-get update &&
          /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' &&
+         mkdir /root/debs/ubuntu18 &&
+         mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - &&
          echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ bionic main | tee /etc/apt/sources.list.d/ceph.list &&
          apt-get update &&
          /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
-         mkdir /root/debs/ubuntu18 &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18"
       - sudo chmod -R 755 ${PWD}/debs
       - docker build -t wise2c/apt-source:ceph18 .
@@ -119,18 +121,14 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
-         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-xenial' &&
-         /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
-         rm -f /root/debs/ubuntu16/docker.io*.deb &&
-         cd /tmp/debs &&
-         apt-get download libseccomp2 &&
-         rm -f docker.io*.deb &&
-         echo '##### list docker and kubernetes packages begin #####' &&
-         ls docker*.deb &&
-         ls kube*.deb &&
-         echo '##### list docker and kubernetes packages end #####' &&
+         /root/apt-download.sh 'docker-ce-cli=${DOCKER_VERSION}~ubuntu-xenial docker-ce=${DOCKER_VERSION}~ubuntu-xenial kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
+         rm -f /root/debs/ubuntu16/docker.io*.deb &&
          cd /root/debs/ubuntu16 &&
+         apt-get download libseccomp2 &&
+         echo '##### list docker and kubernetes packages begin #####' &&
+         ls | grep -E 'docker|kube' &&
+         echo '##### list docker and kubernetes packages end #####' &&
          apt-ftparchive packages . > Packages &&
          apt-ftparchive release . > Release"
 
@@ -144,18 +142,14 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
-         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu-bionic' &&
-         /root/apt-download.sh 'kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
-         rm -f /root/debs/ubuntu18/docker.io*.deb &&
-         cd /tmp/debs &&
-         apt-get download libseccomp2 &&
-         rm -f docker.io*.deb &&
-         echo '##### list docker and kubernetes packages begin #####' &&
-         ls docker*.deb &&
-         ls kube*.deb &&
-         echo '##### list docker and kubernetes packages end #####' &&
+         /root/apt-download.sh 'docker-ce-cli=${DOCKER_VERSION}~ubuntu-bionic docker-ce=${DOCKER_VERSION}~ubuntu-bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
+         rm -f /root/debs/ubuntu18/docker.io*.deb &&
          cd /root/debs/ubuntu18 &&
+         apt-get download libseccomp2 &&
+         echo '##### list docker and kubernetes packages begin #####' &&
+         ls | grep -E 'docker|kube' &&
+         echo '##### list docker and kubernetes packages end #####' &&
          apt-ftparchive packages . > Packages &&
          apt-ftparchive release . > Release &&
          apt-get install -y gnupg gnupg2 > build.log 2>&1 &&
