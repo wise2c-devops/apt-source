@@ -121,11 +121,11 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
-         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         /root/apt-download.sh 'python-apt docker-ce=${DOCKER_VERSION}~ubuntu kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          rm -f /root/debs/ubuntu16/docker.io*.deb &&
          cd /root/debs/ubuntu16 &&
-         apt-get download libseccomp2 &&
+         apt-get download libseccomp2 libapt-pkg5.0 &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls | grep -E 'docker|kube' &&
          echo '##### list docker and kubernetes packages end #####' &&
@@ -142,11 +142,11 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
-         /root/apt-download.sh 'docker-ce=${DOCKER_VERSION}~ubuntu kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         /root/apt-download.sh 'python-apt docker-ce=${DOCKER_VERSION}~ubuntu kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          rm -f /root/debs/ubuntu18/docker.io*.deb &&
          cd /root/debs/ubuntu18 &&
-         apt-get download libseccomp2 &&
+         apt-get download libseccomp2 libapt-pkg5.0 &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls | grep -E 'docker|kube' &&
          echo '##### list docker and kubernetes packages end #####' &&
