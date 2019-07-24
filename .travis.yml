@@ -125,7 +125,7 @@ jobs:
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          rm -f /root/debs/ubuntu16/docker.io*.deb &&
          cd /root/debs/ubuntu16 &&
-         apt-get download libseccomp2 &&
+         apt-get download libseccomp2 libapt-pkg5.0 &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls | grep -E 'docker|kube' &&
          echo '##### list docker and kubernetes packages end #####' &&
@@ -146,7 +146,7 @@ jobs:
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          rm -f /root/debs/ubuntu18/docker.io*.deb &&
          cd /root/debs/ubuntu18 &&
-         apt-get download libseccomp2 &&
+         apt-get download libseccomp2 libapt-pkg5.0 &&
          echo '##### list docker and kubernetes packages begin #####' &&
          ls | grep -E 'docker|kube' &&
          echo '##### list docker and kubernetes packages end #####' &&
