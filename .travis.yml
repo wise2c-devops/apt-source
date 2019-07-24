@@ -24,7 +24,7 @@ jobs:
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:16.04 bash -c
         "apt-get update &&
-         /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests python-apt docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
+         /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          mkdir /root/debs/ubuntu16 &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16"
@@ -38,7 +38,7 @@ jobs:
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
         "apt-get update &&
-         /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests python-apt docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
+         /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          mkdir /root/debs/ubuntu18 &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
@@ -121,7 +121,7 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
-         /root/apt-download.sh 'docker-ce-cli=${DOCKER_VERSION}~ubuntu-xenial docker-ce=${DOCKER_VERSION}~ubuntu-xenial kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-xenial docker-ce=${DOCKER_VERSION}~ubuntu-xenial kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
          rm -f /root/debs/ubuntu16/docker.io*.deb &&
          cd /root/debs/ubuntu16 &&
@@ -142,7 +142,7 @@ jobs:
          add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' &&
          cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
          apt-get update > build.log 2>&1 &&
-         /root/apt-download.sh 'docker-ce-cli=${DOCKER_VERSION}~ubuntu-bionic docker-ce=${DOCKER_VERSION}~ubuntu-bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+         /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-bionic docker-ce=${DOCKER_VERSION}~ubuntu-bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
          mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
          rm -f /root/debs/ubuntu18/docker.io*.deb &&
          cd /root/debs/ubuntu18 &&
