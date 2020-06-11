@@ -23,7 +23,7 @@ jobs:
       script:
       - sudo chmod +x ${PWD}/apt-download-without-version.sh
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
+        docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
         "apt-get update &&
          /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
@@ -66,7 +66,7 @@ jobs:
       script:
       - sudo chmod +x ${PWD}/apt-download-without-version.sh
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
+        docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
         "apt-get update &&
          /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' &&
          mkdir /root/debs/ubuntu20 &&
@@ -156,7 +156,7 @@ jobs:
 
       - sudo chmod +x ${PWD}/apt-download.sh
       - >
-        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c
+        docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c
         "echo 'apt-get updating...' &&
          apt-get update > build.log 2>&1 &&
          apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
