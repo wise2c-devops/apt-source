@@ -14,7 +14,7 @@ base_ubuntu16:
   stage: build
   when: always
   script:
-      - sudo chmod +x ${PWD}/apt-download-without-version.sh
+      - chmod +x ${PWD}/apt-download-without-version.sh
       - >
         docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:16.04 bash -c
         "apt-get update &&
@@ -33,7 +33,7 @@ base_ubuntu18:
   stage: build
   when: always
   script:
-    - sudo chmod +x ${PWD}/apt-download-without-version.sh
+    - chmod +x ${PWD}/apt-download-without-version.sh
     - >
       docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
       "apt-get update &&
@@ -53,7 +53,7 @@ ceph_ubuntu16:
   stage: build
   when: always
   script:
-    - sudo chmod +x ${PWD}/apt-download-without-version.sh
+    - chmod +x ${PWD}/apt-download-without-version.sh
     - >
       docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:16.04 bash -c
       "apt-get update &&
@@ -67,7 +67,7 @@ ceph_ubuntu16:
        /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
        mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
        cd /root/debs/ubuntu16"
-    - sudo chmod -R 755 ${PWD}/debs
+    - chmod -R 755 ${PWD}/debs
     - docker build -t wise2c/apt-source:ceph16 .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker push wise2c/apt-source:ceph16
@@ -79,7 +79,7 @@ ceph_ubuntu18:
   stage: build
   when: always
   script:
-    - sudo chmod +x ${PWD}/apt-download-without-version.sh
+    - chmod +x ${PWD}/apt-download-without-version.sh
     - >
       docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
       "apt-get update &&
@@ -92,12 +92,12 @@ ceph_ubuntu18:
        apt-get update &&
        /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
        mv /tmp/debs/*.deb /root/debs/ubuntu18"
-    - sudo chmod -R 755 ${PWD}/debs
+    - chmod -R 755 ${PWD}/debs
     - docker build -t wise2c/apt-source:ceph18 .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker push wise2c/apt-source:ceph18
 
-build_docker_k8s_image:
+docker_k8s:
   image: docker:git
   services:
     - docker:dind
@@ -119,7 +119,7 @@ build_docker_k8s_image:
     - mkdir -p ${PWD}/debs/ubuntu16 && mkdir -p ${PWD}/debs/ubuntu18
     - mv base16/ubuntu16/*.deb ${PWD}/debs/ubuntu16/ && mv base18/ubuntu18/*.deb ${PWD}/debs/ubuntu18/
     - mv ceph16/ubuntu16/*.deb ${PWD}/debs/ubuntu16/ && mv ceph18/ubuntu18/*.deb ${PWD}/debs/ubuntu18/
-    - sudo chmod +x ${PWD}/apt-download.sh
+    - chmod +x ${PWD}/apt-download.sh
     - >
       docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:16.04 bash -c
       "echo 'apt-get updating...' &&
@@ -176,7 +176,7 @@ build_docker_k8s_image:
        rm -f ../ubuntu18/breeze.key &&
        rm -f ./breeze &&
        rm -f ./breeze.key"
-    - sudo chmod -R 755 ${PWD}/debs
+    - chmod -R 755 ${PWD}/debs
     - docker build -t wise2c/apt-source:$CI_COMMIT_REF_NAME .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker push wise2c/apt-source:$CI_COMMIT_REF_NAME
