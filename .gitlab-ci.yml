@@ -101,7 +101,7 @@ docker_k8s:
   image: docker:git
   services:
     - docker:dind
-  stage: build
+  stage: deploy
   when: always
   script:
     - docker run -itd --name=base16 wise2c/apt-source:base16
