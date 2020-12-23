@@ -19,5 +19,4 @@ done
 echo "###### Downloading finished #####"
 rm -f apt-get-install.log
 
-echo ${current_path}
 cd ${current_path}
