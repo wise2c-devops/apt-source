@@ -13,6 +13,9 @@ base_ubuntu16:
     - docker:dind
   stage: build
   when: always
+  artifacts:
+  paths:
+    - /tmp/debs/
   script:
       - chmod +x ${PWD}/apt-download-without-version.sh
       - >
@@ -32,6 +35,9 @@ base_ubuntu18:
     - docker:dind
   stage: build
   when: always
+  artifacts:
+  paths:
+    - /tmp/debs/
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
@@ -52,6 +58,9 @@ base_ubuntu18:
 #    - docker:dind
 #  stage: build
 #  when: always
+#  artifacts:
+#  paths:
+#    - /tmp/debs/
 #  script:
 #    - chmod +x ${PWD}/apt-download-without-version.sh
 #    - >
@@ -78,6 +87,9 @@ ceph_ubuntu18:
     - docker:dind
   stage: build
   when: always
+  artifacts:
+  paths:
+    - /tmp/debs/
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
