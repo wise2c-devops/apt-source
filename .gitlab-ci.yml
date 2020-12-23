@@ -14,8 +14,8 @@ base_ubuntu16:
   stage: build
   when: always
   artifacts:
-  paths:
-    - /tmp/debs/
+    paths:
+      - /tmp/debs/
   script:
       - chmod +x ${PWD}/apt-download-without-version.sh
       - >
@@ -36,8 +36,8 @@ base_ubuntu18:
   stage: build
   when: always
   artifacts:
-  paths:
-    - /tmp/debs/
+    paths:
+      - /tmp/debs/
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
@@ -59,8 +59,8 @@ base_ubuntu18:
 #  stage: build
 #  when: always
 #  artifacts:
-#  paths:
-#    - /tmp/debs/
+#    paths:
+#      - /tmp/debs/
 #  script:
 #    - chmod +x ${PWD}/apt-download-without-version.sh
 #    - >
@@ -88,8 +88,8 @@ ceph_ubuntu18:
   stage: build
   when: always
   artifacts:
-  paths:
-    - /tmp/debs/
+    paths:
+      - /tmp/debs/
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
