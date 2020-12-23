@@ -62,7 +62,7 @@ ceph_ubuntu16:
        mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
        apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
        curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - &&
-       echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ xenial main | tee /etc/apt/sources.list.d/ceph.list &&
+       echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ bionic main | tee /etc/apt/sources.list.d/ceph.list &&
        apt-get update &&
        /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
        mv /tmp/debs/*.deb /root/debs/ubuntu16 &&
