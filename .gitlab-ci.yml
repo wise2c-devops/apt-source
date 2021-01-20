@@ -4,7 +4,7 @@ stages:
 
 variables:
   CEPH_VERSION: 'octopus'
-  KUBE_VERSION: '1.20.1-00'
+  KUBE_VERSION: '1.20.2-00'
   DOCKER_VERSION: '5:19.03.13~3-0'
 
 base_ubuntu16:
