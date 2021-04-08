@@ -4,8 +4,8 @@ stages:
 
 variables:
   CEPH_VERSION: 'octopus'
-  KUBE_VERSION: '1.20.4-00'
-  DOCKER_VERSION: '5:19.03.14~3-0'
+  KUBE_VERSION: '1.20.5-00'
+  DOCKER_VERSION: '5:19.03.15~3-0'
 
 base_ubuntu16:
   image: docker:git
