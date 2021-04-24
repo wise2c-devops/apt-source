@@ -3,7 +3,7 @@ stages:
   - deploy
 
 variables:
-  CEPH_VERSION: 'octopus'
+  CEPH_VERSION: '15.2.9'
   KUBE_VERSION: '1.21.0-00'
   DOCKER_VERSION: '5:19.03.15~3-0'
 
