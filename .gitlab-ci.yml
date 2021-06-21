@@ -86,7 +86,7 @@ ceph_ubuntu20:
        apt-get update &&
        /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' &&
        mkdir /root/debs/ubuntu20 &&
-       mv /var/cache/apt/archives/*.deb /root/debs/ubuntu20 &&
+       mv /tmp/debs/*.deb /root/debs/ubuntu20 &&
        apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
        curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - &&
        echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ bionic main | tee /etc/apt/sources.list.d/ceph.list &&
