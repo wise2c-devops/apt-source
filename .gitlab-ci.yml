@@ -92,7 +92,7 @@ ceph_ubuntu20:
        echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ bionic main | tee /etc/apt/sources.list.d/ceph.list &&
        apt-get update &&
        /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
-       mv /var/cache/apt/archives/*.deb /root/debs/ubuntu20"
+       mv /tmp/debs/*.deb /root/debs/ubuntu20"
     - chmod -R 755 ${PWD}/debs
     - docker build -t wise2c/apt-source:ceph20 .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
