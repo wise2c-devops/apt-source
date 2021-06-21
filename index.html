@@ -30,34 +30,6 @@ Commercial support is available at
 <br />
 <br />
 
-<p><em>For Ubuntu16 users, please create the file wise2c.list as below and then move to /etc/apt/source.list.d/</em></p>
-<script type="text/javascript">
-  var ip = location.host;
-  var comment = "###############################################";
-  document.write(comment.fontcolor("Red"));
-  document.write("<pm><em></em></p>");
-  document.write("deb http://"+(ip)+"/debs/ubuntu16"+" ./<br>");
-  document.write("<pm><em></em></p>");
-  document.write(comment.fontcolor("Red"));
-</script>
-
-<br />
-<br />
-<p><em>Then download the pub key and import it:</em></p>
-<script type="text/javascript">
-  var ip = location.host;
-  var comment = "###############################################";
-  document.write(comment.fontcolor("Blue"));
-  document.write("<pm><em></em></p>");
-  document.write("curl -o breeze.pub http://"+(ip)+"/debs/ubuntu16/breeze.pub<br>");
-  document.write("apt-key add breeze.pub<br>");
-  document.write("<pm><em></em></p>");
-  document.write(comment.fontcolor("Blue"));
-</script>
-
-<br />
-<br />
-
 <p><em>For Ubuntu18 users, please create the file wise2c.list as below and then move to /etc/apt/source.list.d/</em></p>
 <script type="text/javascript">
   var ip = location.host;
@@ -78,6 +50,34 @@ Commercial support is available at
   document.write(comment.fontcolor("Blue"));
   document.write("<pm><em></em></p>");
   document.write("curl -o breeze.pub http://"+(ip)+"/debs/ubuntu18/breeze.pub<br>");
+  document.write("apt-key add breeze.pub<br>");
+  document.write("<pm><em></em></p>");
+  document.write(comment.fontcolor("Blue"));
+</script>
+
+<br />
+<br />
+
+<p><em>For Ubuntu20 users, please create the file wise2c.list as below and then move to /etc/apt/source.list.d/</em></p>
+<script type="text/javascript">
+  var ip = location.host;
+  var comment = "###############################################";
+  document.write(comment.fontcolor("Red"));
+  document.write("<pm><em></em></p>");
+  document.write("deb http://"+(ip)+"/debs/ubuntu20"+" ./<br>");
+  document.write("<pm><em></em></p>");
+  document.write(comment.fontcolor("Red"));
+</script>
+
+<br />
+<br />
+<p><em>Then download the pub key and import it:</em></p>
+<script type="text/javascript">
+  var ip = location.host;
+  var comment = "###############################################";
+  document.write(comment.fontcolor("Blue"));
+  document.write("<pm><em></em></p>");
+  document.write("curl -o breeze.pub http://"+(ip)+"/debs/ubuntu20/breeze.pub<br>");
   document.write("apt-key add breeze.pub<br>");
   document.write("<pm><em></em></p>");
   document.write(comment.fontcolor("Blue"));
