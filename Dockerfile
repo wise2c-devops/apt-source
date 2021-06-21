@@ -1,5 +1,3 @@
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Asia/Shanghai
 FROM nginx:alpine
 RUN mkdir /usr/share/nginx/html/debs
 COPY debs /usr/share/nginx/html/debs
