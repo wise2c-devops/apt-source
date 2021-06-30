@@ -7,6 +7,25 @@ variables:
   KUBE_VERSION: '1.21.1-00'
   DOCKER_VERSION: '5:19.03.15~3-0'
 
+base_ubuntu20:
+  image: docker:git
+  services:
+    - docker:dind
+  stage: build
+  when: always
+  script:
+      - chmod +x ${PWD}/apt-download-without-version.sh
+      - >
+        docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
+        "apt-get update &&
+         /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset' &&
+         apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
+         mkdir /root/debs/ubuntu20 &&
+         mv /tmp/debs/*.deb /root/debs/ubuntu20"
+      - docker build -t wise2c/apt-source:base20 .
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - docker push wise2c/apt-source:base20
+
 base_ubuntu18:
   image: docker:git
   services:
@@ -27,25 +46,31 @@ base_ubuntu18:
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker push wise2c/apt-source:base18
 
-#base_ubuntu20:
-#  image: docker:git
-#  services:
-#    - docker:dind
-#  stage: build
-#  when: always
-#  script:
-#      - chmod +x ${PWD}/apt-download-without-version.sh
-#      - >
-#        docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
-#        "rm -f /etc/apt/apt.conf.d/docker-clean &&
-#         apt-get update &&
-#         /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset' &&
-#         apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
-#         mkdir /root/debs/ubuntu20 &&
-#         mv /var/cache/apt/archives/*.deb /root/debs/ubuntu20"
-#      - docker build -t wise2c/apt-source:base20 .
-#      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-#      - docker push wise2c/apt-source:base20
+ceph_ubuntu20:
+  image: docker:git
+  services:
+    - docker:dind
+  stage: build
+  when: always
+  script:
+    - chmod +x ${PWD}/apt-download-without-version.sh
+    - >
+      docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
+      "apt-get update &&
+       /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' &&
+       mkdir /root/debs/ubuntu20 &&
+       mv /tmp/debs/*.deb /root/debs/ubuntu20 &&
+       apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
+       curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - &&
+       echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ focal main | tee /etc/apt/sources.list.d/ceph.list &&
+       apt-get update &&
+       /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
+       mv /tmp/debs/*.deb /root/debs/ubuntu20 &&
+       cd /root/debs/ubuntu20"
+    - chmod -R 755 ${PWD}/debs
+    - docker build -t wise2c/apt-source:ceph20 .
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - docker push wise2c/apt-source:ceph20
 
 ceph_ubuntu18:
   image: docker:git
@@ -72,32 +97,6 @@ ceph_ubuntu18:
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker push wise2c/apt-source:ceph18
 
-#ceph_ubuntu20:
-#  image: docker:git
-#  services:
-#    - docker:dind
-#  stage: build
-#  when: always
-#  script:
-#    - chmod +x ${PWD}/apt-download-without-version.sh
-#    - >
-#      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
-#      "rm -f /etc/apt/apt.conf.d/docker-clean &&
-#       apt-get update &&
-#       /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' &&
-#       mkdir /root/debs/ubuntu20 &&
-#       mv /tmp/debs/*.deb /root/debs/ubuntu20 &&
-#       apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
-#       curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - &&
-#       echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ bionic main | tee /etc/apt/sources.list.d/ceph.list &&
-#       apt-get update &&
-#       /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' &&
-#       mv /tmp/debs/*.deb /root/debs/ubuntu20"
-#    - chmod -R 755 ${PWD}/debs
-#    - docker build -t wise2c/apt-source:ceph20 .
-#    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-#    - docker push wise2c/apt-source:ceph20
-
 docker_k8s:
   image: docker:git
   services:
@@ -105,25 +104,45 @@ docker_k8s:
   stage: deploy
   when: always
   script:
+    - docker run -itd --name=base20 wise2c/apt-source:base20
+    - docker cp base20:/usr/share/nginx/html/debs base20
+    - docker stop base20 && docker rm base20
     - docker run -itd --name=base18 wise2c/apt-source:base18
     - docker cp base18:/usr/share/nginx/html/debs base18
     - docker stop base18 && docker rm base18
-#    - docker run -itd --name=base20 wise2c/apt-source:base20
-#    - docker cp base20:/usr/share/nginx/html/debs base20
-#    - docker stop base20 && docker rm base20
+    - docker run -itd --name=ceph20 wise2c/apt-source:ceph20
+    - docker cp ceph20:/usr/share/nginx/html/debs ceph20
+    - docker stop ceph20 && docker rm ceph20
     - docker run -itd --name=ceph18 wise2c/apt-source:ceph18
     - docker cp ceph18:/usr/share/nginx/html/debs ceph18
     - docker stop ceph18 && docker rm ceph18
-#    - docker run -itd --name=ceph20 wise2c/apt-source:ceph20
-#    - docker cp ceph20:/usr/share/nginx/html/debs ceph20
-#    - docker stop ceph20 && docker rm ceph20
+    - mkdir -p ${PWD}/debs/ubuntu20
     - mkdir -p ${PWD}/debs/ubuntu18
-#    - mkdir -p ${PWD}/debs/ubuntu20
+    - mv base20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
     - mv base18/ubuntu18/*.deb ${PWD}/debs/ubuntu18/
-#    - mv base20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
+    - mv ceph20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
     - mv ceph18/ubuntu18/*.deb ${PWD}/debs/ubuntu18/
-#    - mv ceph20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
     - chmod +x ${PWD}/apt-download.sh
+    - >
+      docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c
+      "echo 'apt-get updating...' &&
+       apt-get update > build.log 2>&1 &&
+       apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
+       curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&
+       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
+       add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' &&
+       cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
+       apt-get update > build.log 2>&1 &&
+       /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-focal docker-ce=${DOCKER_VERSION}~ubuntu-focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
+       mv /tmp/debs/*.deb /root/debs/ubuntu20 &&
+       rm -f /root/debs/ubuntu20/docker.io*.deb &&
+       cd /root/debs/ubuntu20 &&
+       apt-get download libseccomp2 libapt-pkg5.0 &&
+       echo '##### list docker and kubernetes packages begin #####' &&
+       ls | grep -E 'docker|kube' &&
+       echo '##### list docker and kubernetes packages end #####' &&
+       apt-ftparchive packages . > Packages &&
+       apt-ftparchive release . > Release"
     - >
       docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:18.04 bash -c
       "echo 'apt-get updating...' &&
@@ -143,27 +162,6 @@ docker_k8s:
        ls | grep -E 'docker|kube' &&
        echo '##### list docker and kubernetes packages end #####' &&
        apt-ftparchive packages . > Packages &&
-       apt-ftparchive release . > Release"
-    - >
-      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c
-      "rm -f /etc/apt/apt.conf.d/docker-clean &&
-       echo 'apt-get updating...' &&
-       apt-get update > build.log 2>&1 &&
-       apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 &&
-#       curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&
-#       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
-#       add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' &&
-#       cp /root/kubernetes.list /etc/apt/sources.list.d/ &&
-#       apt-get update > build.log 2>&1 &&
-#       /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-focal docker-ce=${DOCKER_VERSION}~ubuntu-focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' &&
-#       mv /var/cache/apt/archives/*.deb /root/debs/ubuntu20 &&
-#       rm -f /root/debs/ubuntu18/docker.io*.deb &&
-#       cd /root/debs/ubuntu20 &&
-#       apt-get download libseccomp2 libapt-pkg5.0 &&
-#       echo '##### list docker and kubernetes packages begin #####' &&
-#       ls | grep -E 'docker|kube' &&
-#       echo '##### list docker and kubernetes packages end #####' &&
-       apt-ftparchive packages . > Packages &&
        apt-ftparchive release . > Release &&
        apt-get install -y gnupg gnupg2 > build.log 2>&1 &&
        echo wise2cbreeze > ./breeze.key &&
@@ -171,16 +169,16 @@ docker_k8s:
        gpg2 --batch --gen-key breeze &&
        gpg2 --no-default-keyring --secret-keyring ./breeze.sec --keyring ./breeze.pub --list-secret-keys &&
        gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
-       gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release"
-#       cd /root/debs/ubuntu18 &&
-#       cp ../ubuntu20/breeze.pub ./ &&
-#       cp ../ubuntu20/breeze.key ./ &&
-#       gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
-#       gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release &&
-#       rm -f ../ubuntu20/breeze &&
-#       rm -f ../ubuntu20/breeze.key &&
-#       rm -f ./breeze &&
-#       rm -f ./breeze.key"
+       gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release &&
+       cd /root/debs/ubuntu20 &&
+       cp ../ubuntu18/breeze.pub ./ &&
+       cp ../ubuntu18/breeze.key ./ &&
+       gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release &&
+       gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release &&
+       rm -f ../ubuntu18/breeze &&
+       rm -f ../ubuntu18/breeze.key &&
+       rm -f ./breeze &&
+       rm -f ./breeze.key"
     - chmod -R 755 ${PWD}/debs
     - docker build -t wise2c/apt-source:$CI_COMMIT_REF_NAME .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
