@@ -19,7 +19,7 @@ base_ubuntu20:
         docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
         "rm -f /etc/apt/apt.conf.d/docker-clean &&
          apt-get update &&
-         /root/apt-download-without-version.sh 'python python-docker python-chardet python-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset' &&
+         /root/apt-download-without-version.sh 'python python-chardet docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset' &&
          apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils &&
          mkdir /root/debs/ubuntu20 &&
          mv /tmp/debs/*.deb /root/debs/ubuntu20"
