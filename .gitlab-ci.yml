@@ -140,7 +140,7 @@ docker_k8s:
        mv /tmp/debs/*.deb /root/debs/ubuntu20 &&
        rm -f /root/debs/ubuntu20/docker.io*.deb &&
        cd /root/debs/ubuntu20 &&
-       apt-get download libseccomp2 libapt-pkg5.0 &&
+       apt-get download libseccomp2 &&
        echo '##### list docker and kubernetes packages begin #####' &&
        ls | grep -E 'docker|kube' &&
        echo '##### list docker and kubernetes packages end #####' &&
