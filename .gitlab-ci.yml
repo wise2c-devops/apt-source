@@ -64,7 +64,7 @@ base_ubuntu18:
        /root/apt-download-without-version.sh "cri-o cri-o-runc" &&
        mkdir /root/debs/ubuntu18 &&
        mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
-       cd /root/debs/ubuntu18"
+       cd /root/debs/ubuntu18'
     - docker build -t wise2c/apt-source:base18 .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker push wise2c/apt-source:base18
