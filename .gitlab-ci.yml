@@ -31,6 +31,10 @@ base_ubuntu20:
        /root/apt-download-without-version.sh 'python python-chardet docker-compose chrony jq ipvsadm graphviz nfs-common gnupg1 gnupg2 ipset cri-o cri-o-runc' &&
        apt-get update && apt-get install -y apt-transport-https software-properties-common apt-utils &&
        mkdir /root/debs/ubuntu20 &&
+       echo '################### ls /tmp/debs/*.deb ###########################' &&
+       ls /tmp/debs/* &&
+       echo '################### ls /var/cache/apt/archives/*.deb ###########################' &&
+       ls /var/cache/apt/archives/*.deb &&
        mv /tmp/debs/*.deb /root/debs/ubuntu20"
     - docker build -t wise2c/apt-source:base20 .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
