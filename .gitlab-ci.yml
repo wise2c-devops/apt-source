@@ -20,7 +20,7 @@ base_ubuntu20:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
       docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
-      "rm -f /etc/apt/apt.conf.d/docker-clean &&
+       'rm -f /etc/apt/apt.conf.d/docker-clean &&
        apt-get update &&
        apt-get install -y curl gnupg1 gnupg2 &&
        echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS20/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
@@ -28,14 +28,14 @@ base_ubuntu20:
        curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS20/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
        curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$K8S_VERSION/$OS20/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
        apt-get update &&
-       /root/apt-download-without-version.sh 'python python-chardet docker-compose chrony jq ipvsadm graphviz nfs-common gnupg1 gnupg2 ipset cri-o cri-o-runc' &&
+       /root/apt-download-without-version.sh "python python-chardet docker-compose chrony jq ipvsadm graphviz nfs-common gnupg1 gnupg2 ipset cri-o cri-o-runc" &&
        apt-get update && apt-get install -y apt-transport-https software-properties-common apt-utils &&
        mkdir /root/debs/ubuntu20 &&
-       echo '################### ls /tmp/debs/*.deb ###########################' &&
+       echo "################### ls /tmp/debs/*.deb ###########################" &&
        ls /tmp/debs/* &&
-       echo '################### ls /var/cache/apt/archives/*.deb ###########################' &&
+       echo "################### ls /var/cache/apt/archives/*.deb ###########################" &&
        ls /var/cache/apt/archives/*.deb &&
-       mv /tmp/debs/*.deb /root/debs/ubuntu20"
+       mv /tmp/debs/*.deb /root/debs/ubuntu20'
     - docker build -t wise2c/apt-source:base20 .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker push wise2c/apt-source:base20
