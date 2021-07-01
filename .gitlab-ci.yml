@@ -19,16 +19,16 @@ base_ubuntu20:
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
-      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
+      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e OS=$OS20 -e VERSION=$K8S_VERSION -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
       'rm -f /etc/apt/apt.conf.d/docker-clean &&
        apt-get update &&
        apt-get install -y curl gnupg1 gnupg2 &&
-       echo \"deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS20/ /\" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
+       echo \"deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /\" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
        cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
-       echo \"deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$K8S_VERSION/$OS20/ /\" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
+       echo \"deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /\" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
        cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
-       curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS20/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
-       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$K8S_VERSION/$OS20/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
+       curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
+       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
        apt-get update &&
        /root/apt-download-without-version.sh \"python python-chardet docker-compose chrony jq ipvsadm graphviz nfs-common gnupg1 gnupg2 ipset cri-o cri-o-runc\" &&
        apt-get update && apt-get install -y apt-transport-https software-properties-common apt-utils &&
