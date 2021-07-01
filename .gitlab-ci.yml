@@ -20,7 +20,7 @@ base_ubuntu20:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
       docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
-       'rm -f /etc/apt/apt.conf.d/docker-clean &&
+      'rm -f /etc/apt/apt.conf.d/docker-clean &&
        apt-get update &&
        apt-get install -y curl gnupg1 gnupg2 &&
        echo \"deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS20/ /\" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
