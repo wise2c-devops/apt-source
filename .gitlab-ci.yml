@@ -33,7 +33,7 @@ base_ubuntu20:
        curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
        curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
        apt-get update &&
-       /root/apt-download-without-version.sh "cri-o cri-o-runc" &&
+       /root/apt-download-without-version.sh "cri-o cri-o-runc podman" &&
        mv /tmp/debs/*.deb /root/debs/ubuntu20 &&
        ls /root/debs/ubuntu20/'
     - docker build -t wise2c/apt-source:base20 .
@@ -63,7 +63,7 @@ base_ubuntu18:
        curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
        curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
        apt-get update &&
-       /root/apt-download-without-version.sh "cri-o cri-o-runc" &&
+       /root/apt-download-without-version.sh "cri-o cri-o-runc podman" &&
        mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
        ls /root/debs/ubuntu18 &&
        cd /root/debs/ubuntu18'
