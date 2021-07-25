@@ -4,7 +4,7 @@ stages:
 
 variables:
   CEPH_VERSION: '15.2.9'
-  KUBE_VERSION: '1.20.8-00'
+  KUBE_VERSION: '1.20.9-00'
   DOCKER_VERSION: '5:19.03.15~3-0'
   OS18: 'xUbuntu_18.04'
   OS20: 'xUbuntu_20.04'
