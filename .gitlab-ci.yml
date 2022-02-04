@@ -4,11 +4,11 @@ stages:
 
 variables:
   CEPH_VERSION: '15.2.9'
-  KUBE_VERSION: '1.22.4-00'
+  KUBE_VERSION: '1.22.0-00'
   DOCKER_VERSION: '5:20.10.7~3-0'
   OS18: 'xUbuntu_18.04'
   OS20: 'xUbuntu_20.04'
-  K8S_VERSION: '1.21'
+  K8S_VERSION: '1.22'
 
 base_ubuntu20:
   image: docker:git
