@@ -5,7 +5,7 @@ Wise2C Apt Source for Docker/K8S/Ceph/NFS installation
 
 Apt Source服务器安装好docker，直接运行命令：
 
-docker run -d -p 2008:2008 --name=apt-source wise2c/apt-source:v1.23.1
+docker run -d -p 2008:2008 --name=apt-source wise2c/apt-source:v1.23.2
 
 在需要安装docker/k8s/ceph/nfs的其它主机上：
 
