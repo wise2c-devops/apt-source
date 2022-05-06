@@ -63,6 +63,10 @@ base_ubuntu18:
        cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
        curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
        curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRI_VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
+       
+       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRI_VERSION/$OS/Release.key -o ./Release.key &&
+       cat ./Release.key &&
+
        apt-get update &&
        /root/apt-download-without-version.sh "cri-o cri-o-runc podman" &&
        mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
