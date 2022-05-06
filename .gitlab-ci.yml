@@ -20,7 +20,7 @@ base_ubuntu20:
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
-      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e CRIO-MAJOR-VERSION=$CRIO_MAJOR_VERSION -e CRIO-VERSION=${CRIO_VERSION} -e OS=$OS20 -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
+      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e CRIO-MAJOR-VERSION=${CRIO_MAJOR_VERSION} -e CRIO-VERSION=${CRIO_VERSION} -e OS=$OS20 -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
       'rm -f /etc/apt/apt.conf.d/docker-clean &&
        apt-get update &&
        /root/apt-download-without-version.sh "python python3-docker python-chardet python3-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset" &&
@@ -50,7 +50,7 @@ base_ubuntu18:
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
-      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e CRIO-MAJOR-VERSION=$CRIO_MAJOR_VERSION -e CRIO-VERSION=${CRIO_VERSION} -e OS=$OS18 -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
+      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e CRIO-MAJOR-VERSION=${CRIO_MAJOR_VERSION} -e CRIO-VERSION=${CRIO_VERSION} -e OS=$OS18 -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
       'rm -f /etc/apt/apt.conf.d/docker-clean &&
        apt-get update &&
        /root/apt-download-without-version.sh "python python3-docker python-chardet python3-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset" &&
