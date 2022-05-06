@@ -66,6 +66,8 @@ base_ubuntu18:
        echo '####################Start##########################' &&
        curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRI_VERSION/$OS/Release.key -o ./Release.key &&
        cat ./Release.key &&
+       echo 'https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRI_VERSION/$OS/Release.key' > ./command.txt &&
+       cat ./command.txt
        echo '####################End############################' &&
 
        curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRI_VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
