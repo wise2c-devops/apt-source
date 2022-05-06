@@ -8,7 +8,8 @@ variables:
   DOCKER_VERSION: '5:20.10.7~3-0'
   OS18: 'xUbuntu_18.04'
   OS20: 'xUbuntu_20.04'
-  K8S_VERSION: '1.23'
+  CRI_MAIN_VERSION: '1.23'
+  CRI_VERSION: '1.23.2'
 
 base_ubuntu20:
   image: docker:git
@@ -19,7 +20,7 @@ base_ubuntu20:
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
-      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e OS=$OS20 -e VERSION=$K8S_VERSION -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
+      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e OS=$OS20 -e CRIMAINVERSION=$CRI_MAIN_VERSION -e CRIVERSION=$CRI_VERSION -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c
       'rm -f /etc/apt/apt.conf.d/docker-clean &&
        apt-get update &&
        /root/apt-download-without-version.sh "python python3-docker python-chardet python3-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset" &&
@@ -28,10 +29,10 @@ base_ubuntu20:
        apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 &&
        echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
        cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
-       echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
+       echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$CRIMAINVERSION:/$CRIVERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
        cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
        curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
-       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
+       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRIVERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
        apt-get update &&
        /root/apt-download-without-version.sh "cri-o cri-o-runc podman" &&
        mv /tmp/debs/*.deb /root/debs/ubuntu20 &&
@@ -49,7 +50,7 @@ base_ubuntu18:
   script:
     - chmod +x ${PWD}/apt-download-without-version.sh
     - >
-      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e OS=$OS18 -e VERSION=$K8S_VERSION -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
+      docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -e OS=$OS18 -e CRIMAINVERSION=$CRI_MAIN_VERSION -e CRIVERSION=$CRI_VERSION -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:18.04 bash -c
       'rm -f /etc/apt/apt.conf.d/docker-clean &&
        apt-get update &&
        /root/apt-download-without-version.sh "python python3-docker python-chardet python3-requests docker-compose chrony jq ipvsadm graphviz nfs-common gnupg gnupg2 ipset" &&
@@ -58,10 +59,10 @@ base_ubuntu18:
        apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 &&
        echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
        cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list &&
-       echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
+       echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$CRIMAINVERSION:/$CRIVERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
        cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
        curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
-       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
+       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRIVERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
        apt-get update &&
        /root/apt-download-without-version.sh "cri-o cri-o-runc podman" &&
        mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
