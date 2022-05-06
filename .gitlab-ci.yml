@@ -62,11 +62,14 @@ base_ubuntu18:
        echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$CRIMAINVERSION:/$CRIVERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
        cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list &&
        curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - &&
-       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRI_VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
-       
+
+       echo '####################Start##########################' &&
        curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRI_VERSION/$OS/Release.key -o ./Release.key &&
        cat ./Release.key &&
+       echo '####################End############################' &&
 
+       curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:/$CRIMAINVERSION:/$CRI_VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - &&
+       
        apt-get update &&
        /root/apt-download-without-version.sh "cri-o cri-o-runc podman" &&
        mv /tmp/debs/*.deb /root/debs/ubuntu18 &&
