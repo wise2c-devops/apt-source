@@ -9,7 +9,7 @@ variables:
   OS18: 'xUbuntu_18.04'
   OS20: 'xUbuntu_20.04'
   CRI_MAIN_VERSION: '1.24'
-  CRI_VERSION: '1.24.0'
+  CRI_VERSION: '1.24.1'
 
 base_ubuntu20:
   image: docker:git
