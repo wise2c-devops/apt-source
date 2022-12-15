@@ -34,3 +34,9 @@ jobs:
         docker build -t wise2c/apt-source:base20 .
         #docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         #docker push wise2c/apt-source:base20
+
+workflows:
+  version: 2
+  build-for-branches:
+    jobs:
+      - build-branches-amd64
