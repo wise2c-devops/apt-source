@@ -145,7 +145,7 @@ jobs:
              docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
              docker push wise2c/apt-source:amd64-base18
 
-  build-branches-amd64-ceph20:
+  build-branches-amd64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.22.14-00'
@@ -177,7 +177,7 @@ jobs:
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push wise2c/apt-source:amd64-ceph20
 
-  build-tags-amd64-ceph20:
+  build-tags-amd64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.22.14-00'
@@ -209,7 +209,7 @@ jobs:
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push wise2c/apt-source:amd64-ceph20
 
-  build-branches-amd64-ceph18:
+  build-branches-amd64-ceph-ubuntu18:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.22.14-00'
@@ -239,7 +239,7 @@ jobs:
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push wise2c/apt-source:amd64-ceph18
 
-  build-tags-amd64-ceph18:
+  build-tags-amd64-ceph-ubuntu18:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.22.14-00'
