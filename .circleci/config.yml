@@ -493,7 +493,7 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-      - build-tags-amd64-ceph-ubuntu20:
+      - build-tags-amd64-ceph-ubuntu18:
           filters:
             tags:
               only: /^v.*/
