@@ -161,18 +161,18 @@ jobs:
           command: |
             sudo chmod +x ${PWD}/apt-download-without-version.sh
             docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:20.04 bash -c \
-              'rm -f /etc/apt/apt.conf.d/docker-clean && \
+              "rm -f /etc/apt/apt.conf.d/docker-clean && \
                apt-get update && \
-               /root/apt-download-without-version.sh "apt-transport-https curl software-properties-common apt-utils" && \
+               /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' && \
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils && \
                curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - && \
                echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ focal main | tee /etc/apt/sources.list.d/ceph.list && \
                apt-get update && \
-               /root/apt-download-without-version.sh "ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw open-vm-tools" && \
+               /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw open-vm-tools' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
-               cd /root/debs/ubuntu20'
+               cd /root/debs/ubuntu20"
             sudo chmod -R 755 ${PWD}/debs
             docker build -t wise2c/apt-source:amd64-ceph20 .
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
