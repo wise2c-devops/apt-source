@@ -31,9 +31,9 @@ jobs:
                /root/apt-download-without-version.sh 'cri-o cri-o-runc podman' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                ls /root/debs/ubuntu20/"
-             docker build -t wise2c/apt-source:amd64-base20 .
-             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-             docker push wise2c/apt-source:amd64-base20
+            docker build -t wise2c/apt-source:amd64-base20 .
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker push wise2c/apt-source:amd64-base20
 
   build-tags-amd64-base-ubuntu20:
     environment:
@@ -67,9 +67,9 @@ jobs:
                /root/apt-download-without-version.sh 'cri-o cri-o-runc podman' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                ls /root/debs/ubuntu20/"
-             docker build -t wise2c/apt-source:amd64-base20 .
-             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-             docker push wise2c/apt-source:amd64-base20
+            docker build -t wise2c/apt-source:amd64-base20 .
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker push wise2c/apt-source:amd64-base20
 
   build-branches-amd64-base-ubuntu18:
     environment:
@@ -104,9 +104,9 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu18 && \
                ls /root/debs/ubuntu18 && \
                cd /root/debs/ubuntu18"
-             docker build -t wise2c/apt-source:amd64-base18 .
-             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-             docker push wise2c/apt-source:amd64-base18
+            docker build -t wise2c/apt-source:amd64-base18 .
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker push wise2c/apt-source:amd64-base18
 
   build-tags-amd64-base-ubuntu18:
     environment:
@@ -141,9 +141,9 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu18 && \
                ls /root/debs/ubuntu18 && \
                cd /root/debs/ubuntu18"
-             docker build -t wise2c/apt-source:amd64-base18 .
-             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-             docker push wise2c/apt-source:amd64-base18
+            docker build -t wise2c/apt-source:amd64-base18 .
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker push wise2c/apt-source:amd64-base18
 
   build-branches-amd64-ceph-ubuntu20:
     environment:
