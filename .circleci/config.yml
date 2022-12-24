@@ -287,16 +287,16 @@ jobs:
       - run:
           name: Build an amd64 k8s container image
           command: |
-            docker run -itd --name=base20 wise2c/apt-source:base20
+            docker run -itd --name=base20 wise2c/apt-source:amd64-base20
             docker cp base20:/usr/share/nginx/html/debs base20
             docker stop base20 && docker rm base20
-            docker run -itd --name=base18 wise2c/apt-source:base18
+            docker run -itd --name=base18 wise2c/apt-source:amd64-base18
             docker cp base18:/usr/share/nginx/html/debs base18
             docker stop base18 && docker rm base18
-            docker run -itd --name=ceph20 wise2c/apt-source:ceph20
+            docker run -itd --name=ceph20 wise2c/apt-source:amd64-ceph20
             docker cp ceph20:/usr/share/nginx/html/debs ceph20
             docker stop ceph20 && docker rm ceph20
-            docker run -itd --name=ceph18 wise2c/apt-source:ceph18
+            docker run -itd --name=ceph18 wise2c/apt-source:amd64-ceph18
             docker cp ceph18:/usr/share/nginx/html/debs ceph18
             docker stop ceph18 && docker rm ceph18
             mkdir -p ${PWD}/debs/ubuntu20
@@ -380,16 +380,16 @@ jobs:
       - run:
           name: Build an amd64 k8s container image
           command: |
-            docker run -itd --name=base20 wise2c/apt-source:base20
+            docker run -itd --name=base20 wise2c/apt-source:amd64-base20
             docker cp base20:/usr/share/nginx/html/debs base20
             docker stop base20 && docker rm base20
-            docker run -itd --name=base18 wise2c/apt-source:base18
+            docker run -itd --name=base18 wise2c/apt-source:amd64-base18
             docker cp base18:/usr/share/nginx/html/debs base18
             docker stop base18 && docker rm base18
-            docker run -itd --name=ceph20 wise2c/apt-source:ceph20
+            docker run -itd --name=ceph20 wise2c/apt-source:amd64-ceph20
             docker cp ceph20:/usr/share/nginx/html/debs ceph20
             docker stop ceph20 && docker rm ceph20
-            docker run -itd --name=ceph18 wise2c/apt-source:ceph18
+            docker run -itd --name=ceph18 wise2c/apt-source:amd64-ceph18
             docker cp ceph18:/usr/share/nginx/html/debs ceph18
             docker stop ceph18 && docker rm ceph18
             mkdir -p ${PWD}/debs/ubuntu20
@@ -455,9 +455,9 @@ jobs:
                rm -f ./breeze && \
                rm -f ./breeze.key"
             sudo chmod -R 755 ${PWD}/debs
-            docker build -t wise2c/apt-source:amd64-$CIRCLE_BRANCH .
+            docker build -t wise2c/apt-source:amd64-$CIRCLE_TAG .
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker push wise2c/apt-source:amd64-$CIRCLE_BRANCH
+            docker push wise2c/apt-source:amd64-$CIRCLE_TAG
 
 workflows:
   version: 2
@@ -467,12 +467,12 @@ workflows:
       - build-branches-amd64-base-ubuntu18
       - build-branches-amd64-ceph-ubuntu20
       - build-branches-amd64-ceph-ubuntu18
-#      - build-branches-amd64-k8s-docker:
-#          requires:
-#            - build-branches-amd64-base-ubuntu20
-#            - build-branches-amd64-base-ubuntu18
-#            - build-branches-amd64-ceph-ubuntu20
-#            - build-branches-amd64-ceph-ubuntu18
+      - build-branches-amd64-k8s-docker:
+          requires:
+            - build-branches-amd64-base-ubuntu20
+            - build-branches-amd64-base-ubuntu18
+            - build-branches-amd64-ceph-ubuntu20
+            - build-branches-amd64-ceph-ubuntu18
   build-for-tags:
     jobs:
       - build-tags-amd64-base-ubuntu20:
@@ -499,15 +499,15 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-#      - build-tags-amd64-k8s-docker:
-#          requires:
-#            - build-branches-amd64-base-ubuntu20
-#            - build-branches-amd64-base-ubuntu18
-#            - build-branches-amd64-ceph-ubuntu20
-#            - build-branches-amd64-ceph-ubuntu18
-#          filters:
-#            tags:
-#              only: /^v.*/
-#            branches:
-#              ignore: /.*/
+      - build-tags-amd64-k8s-docker:
+          requires:
+            - build-branches-amd64-base-ubuntu20
+            - build-branches-amd64-base-ubuntu18
+            - build-branches-amd64-ceph-ubuntu20
+            - build-branches-amd64-ceph-ubuntu18
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
 
