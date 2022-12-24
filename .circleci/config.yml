@@ -285,7 +285,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build an amd64 container image
+          name: Build an amd64 k8s container image
+          command: |
             docker run -itd --name=base20 wise2c/apt-source:base20
             docker cp base20:/usr/share/nginx/html/debs base20
             docker stop base20 && docker rm base20
@@ -377,7 +378,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build an amd64 container image
+          name: Build an amd64 k8s container image
+          command: |
             docker run -itd --name=base20 wise2c/apt-source:base20
             docker cp base20:/usr/share/nginx/html/debs base20
             docker stop base20 && docker rm base20
