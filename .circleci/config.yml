@@ -642,7 +642,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-               add-apt-repository 'deb [arch=aarch64] https://download.docker.com/linux/ubuntu focal stable' && \
+               add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-focal docker-ce=${DOCKER_VERSION}~ubuntu-focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
@@ -736,7 +736,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-               add-apt-repository 'deb [arch=aarch64] https://download.docker.com/linux/ubuntu focal stable' && \
+               add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-focal docker-ce=${DOCKER_VERSION}~ubuntu-focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
