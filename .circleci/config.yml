@@ -501,10 +501,10 @@ workflows:
               ignore: /.*/
       - build-tags-amd64-k8s-docker:
           requires:
-            - build-branches-amd64-base-ubuntu20
-            - build-branches-amd64-base-ubuntu18
-            - build-branches-amd64-ceph-ubuntu20
-            - build-branches-amd64-ceph-ubuntu18
+            - build-tags-amd64-base-ubuntu20
+            - build-tags-amd64-base-ubuntu18
+            - build-tags-amd64-ceph-ubuntu20
+            - build-tags-amd64-ceph-ubuntu18
           filters:
             tags:
               only: /^v.*/
