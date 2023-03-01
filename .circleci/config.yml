@@ -3,7 +3,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -39,7 +39,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -75,7 +75,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -112,7 +112,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -149,7 +149,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -182,7 +182,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -215,7 +215,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -246,7 +246,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -277,7 +277,7 @@ jobs:
     environment:
       CEPH_VERSION: '15.2.9'
       KUBE_VERSION: '1.23.17-00'
-      DOCKER_VERSION: '5:23.0.0-1'
+      DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: '1.23'
@@ -316,7 +316,7 @@ jobs:
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-focal docker-ce=${DOCKER_VERSION}~ubuntu-focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                rm -f /root/debs/ubuntu20/docker.io*.deb && \
                cd /root/debs/ubuntu20 && \
@@ -335,7 +335,7 @@ jobs:
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-bionic docker-ce=${DOCKER_VERSION}~ubuntu-bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.18.04~bionic docker-ce=${DOCKER_VERSION}~ubuntu.18.04~bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu18 && \
                rm -f /root/debs/ubuntu18/docker.io*.deb && \
                cd /root/debs/ubuntu18 && \
@@ -409,7 +409,7 @@ jobs:
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-focal docker-ce=${DOCKER_VERSION}~ubuntu-focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                rm -f /root/debs/ubuntu20/docker.io*.deb && \
                cd /root/debs/ubuntu20 && \
@@ -428,7 +428,7 @@ jobs:
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-bionic docker-ce=${DOCKER_VERSION}~ubuntu-bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.18.04~bionic docker-ce=${DOCKER_VERSION}~ubuntu.18.04~bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu18 && \
                rm -f /root/debs/ubuntu18/docker.io*.deb && \
                cd /root/debs/ubuntu18 && \
@@ -641,7 +641,7 @@ jobs:
                add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-focal docker-ce=${DOCKER_VERSION}~ubuntu-focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                rm -f /root/debs/ubuntu20/docker.io*.deb && \
                cd /root/debs/ubuntu20 && \
@@ -700,7 +700,7 @@ jobs:
                add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu-focal docker-ce=${DOCKER_VERSION}~ubuntu-focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                rm -f /root/debs/ubuntu20/docker.io*.deb && \
                cd /root/debs/ubuntu20 && \
