@@ -6,7 +6,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -42,7 +42,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -78,7 +78,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -115,7 +115,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -152,7 +152,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -185,7 +185,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -218,7 +218,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -249,7 +249,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -280,7 +280,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -373,7 +373,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     machine: true
     steps:
       - checkout
@@ -466,7 +466,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     resource_class: arm.medium
     machine: true
     steps:
@@ -503,7 +503,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     resource_class: arm.medium
     machine: true
     steps:
@@ -540,7 +540,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     resource_class: arm.medium
     machine: true
     steps:
@@ -574,7 +574,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     resource_class: arm.medium
     machine: true
     steps:
@@ -608,7 +608,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     resource_class: arm.medium
     machine: true
     steps:
@@ -667,7 +667,7 @@ jobs:
       DOCKER_VERSION: '5:23.0.1-1'
       OS18: 'xUbuntu_18.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.26'
+      K8S_VERSION: '1.27'
     resource_class: arm.medium
     machine: true
     steps:
