@@ -330,8 +330,8 @@ jobs:
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
-               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
-               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/k8s.gpg --import && \
+               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/docker.gpg --import && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
@@ -423,8 +423,8 @@ jobs:
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
-               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
-               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/k8s.gpg --import && \
+               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/docker.gpg --import && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
