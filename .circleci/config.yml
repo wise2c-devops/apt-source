@@ -233,7 +233,7 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils && \
                curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - && \
-               echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ bionic main | tee /etc/apt/sources.list.d/ceph.list && \
+               echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ jammy main | tee /etc/apt/sources.list.d/ceph.list && \
                apt-get update && \
                /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22"
@@ -264,7 +264,7 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils && \
                curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - && \
-               echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ bionic main | tee /etc/apt/sources.list.d/ceph.list && \
+               echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ jammy main | tee /etc/apt/sources.list.d/ceph.list && \
                apt-get update && \
                /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw radosgw-agent open-vm-tools' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22"
@@ -332,10 +332,10 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' && \
+               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~bionic docker-ce=${DOCKER_VERSION}~ubuntu.22.04~bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                rm -f /root/debs/ubuntu22/docker.io*.deb && \
                cd /root/debs/ubuntu22 && \
@@ -425,10 +425,10 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' && \
+               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~bionic docker-ce=${DOCKER_VERSION}~ubuntu.22.04~bionic kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                rm -f /root/debs/ubuntu22/docker.io*.deb && \
                cd /root/debs/ubuntu22 && \
