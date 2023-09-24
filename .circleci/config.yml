@@ -628,7 +628,7 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils && \
                curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - && \
-               echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ focal main | tee /etc/apt/sources.list.d/ceph.list && \
+               echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ jammy main | tee /etc/apt/sources.list.d/ceph.list && \
                apt-get update && \
                /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw open-vm-tools' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -671,6 +671,41 @@ jobs:
             docker build -t wise2c/apt-source:aarch64-ceph20 .
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push wise2c/apt-source:aarch64-ceph20
+
+  build-tags-aarch64-ceph-ubuntu22:
+    environment:
+      CEPH_VERSION: '18.2.0'
+      KUBE_VERSION: '1.25.14-00'
+      DOCKER_VERSION: '5:24.0.6-1'
+      OS22: 'xUbuntu_22.04'
+      OS20: 'xUbuntu_20.04'
+      K8S_VERSION: '1.25'
+    resource_class: arm.medium
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build an aarch64 ubuntu20 ceph container image
+          command: |
+            sudo chmod +x ${PWD}/apt-download-without-version.sh
+            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download-without-version.sh:/root/apt-download-without-version.sh ubuntu:22.04 bash -c \
+              "rm -f /etc/apt/apt.conf.d/docker-clean && \
+               apt-get update && \
+               /root/apt-download-without-version.sh 'apt-transport-https curl software-properties-common apt-utils' && \
+               mkdir /root/debs/ubuntu22 && \
+               mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
+               apt-get install -y apt-transport-https curl software-properties-common apt-utils && \
+               curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - && \
+               echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ jammy main | tee /etc/apt/sources.list.d/ceph.list && \
+               apt-get update && \
+               /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw open-vm-tools' && \
+               mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
+               cd /root/debs/ubuntu22"
+            sudo chmod -R 755 ${PWD}/debs
+            docker build -t wise2c/apt-source:aarch64-ceph22 .
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker push wise2c/apt-source:aarch64-ceph22
+
 
   build-branches-aarch64-k8s-docker:
     environment:
