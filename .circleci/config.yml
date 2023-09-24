@@ -667,7 +667,7 @@ jobs:
                curl -fsSL https://download.ceph.com/keys/release.asc | apt-key add - && \
                echo deb https://download.ceph.com/debian-${CEPH_VERSION}/ jammy main | tee /etc/apt/sources.list.d/ceph.list && \
                apt-get update && \
-               /root/apt-download-without-version.sh 'ceph ceph-deploy ceph-mgr ceph-mds rbd-nbd rbd-mirror radosgw open-vm-tools' && \
+               /root/apt-download-without-version.sh 'open-vm-tools' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                cd /root/debs/ubuntu22"
             sudo chmod -R 755 ${PWD}/debs
