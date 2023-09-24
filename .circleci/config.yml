@@ -423,10 +423,10 @@ jobs:
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
-               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/k8s.gpg --import && \
-               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/docker.gpg --import && \
+               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg && \
+               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-jammy main" | tee /etc/apt/sources.list.d/kubernetes.list && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
-               cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -757,26 +757,26 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build an aarch64 k8s container image
+          name: Build an amd64 k8s container image
           command: |
-            docker run -itd --name=base20 wise2c/apt-source:aarch64-base20
+            docker run -itd --name=base20 wise2c/apt-source:amd64-base20
             docker cp base20:/usr/share/nginx/html/debs base20
             docker stop base20 && docker rm base20
-            #docker run -itd --name=base22 wise2c/apt-source:aarch64-base22
-            #docker cp base22:/usr/share/nginx/html/debs base22
-            #docker stop base22 && docker rm base22
-            docker run -itd --name=ceph20 wise2c/apt-source:aarch64-ceph20
+            docker run -itd --name=base22 wise2c/apt-source:amd64-base22
+            docker cp base22:/usr/share/nginx/html/debs base22
+            docker stop base22 && docker rm base22
+            docker run -itd --name=ceph20 wise2c/apt-source:amd64-ceph20
             docker cp ceph20:/usr/share/nginx/html/debs ceph20
             docker stop ceph20 && docker rm ceph20
-            #docker run -itd --name=ceph22 wise2c/apt-source:aarch64-ceph22
-            #docker cp ceph22:/usr/share/nginx/html/debs ceph22
-            #docker stop ceph22 && docker rm ceph22
+            docker run -itd --name=ceph22 wise2c/apt-source:amd64-ceph22
+            docker cp ceph22:/usr/share/nginx/html/debs ceph22
+            docker stop ceph22 && docker rm ceph22
             mkdir -p ${PWD}/debs/ubuntu20
-            #mkdir -p ${PWD}/debs/ubuntu22
+            mkdir -p ${PWD}/debs/ubuntu22
             mv base20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
-            #mv base22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
+            mv base22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
             mv ceph20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
-            #mv ceph22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
+            mv ceph22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
             sudo chmod +x ${PWD}/apt-download.sh
             docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
               "rm -f /etc/apt/apt.conf.d/docker-clean && \
@@ -785,7 +785,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-               add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
+               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
@@ -798,6 +798,41 @@ jobs:
                echo '##### list docker and kubernetes packages end #####' && \
                apt-ftparchive packages . > Packages && \
                apt-ftparchive release . > Release"
+            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
+              "echo 'apt-get updating...' && \
+               apt-get update > build.log 2>&1 && \
+               apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
+               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg && \
+               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-jammy main" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
+               apt-get update > build.log 2>&1 && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
+               rm -f /root/debs/ubuntu22/docker.io*.deb && \
+               cd /root/debs/ubuntu22 && \
+               apt-get download libseccomp2 libapt-pkg5.0 && \
+               echo '##### list docker and kubernetes packages begin #####' && \
+               ls | grep -E 'docker|kube' && \
+               echo '##### list docker and kubernetes packages end #####' && \
+               apt-ftparchive packages . > Packages && \
+               apt-ftparchive release . > Release && \
+               apt-get install -y gnupg gnupg2 > build.log 2>&1 && \
+               echo wise2cbreeze > ./breeze.key && \
+               cp /root/breeze ./ && \
+               gpg2 --batch --gen-key breeze && \
+               gpg2 --no-default-keyring --secret-keyring ./breeze.sec --keyring ./breeze.pub --list-secret-keys && \
+               gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release && \
+               gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release && \
+               cd /root/debs/ubuntu20 && \
+               cp ../ubuntu22/breeze.pub ./ && \
+               cp ../ubuntu22/breeze.key ./ && \
+               gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release && \
+               gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release && \
+               rm -f ../ubuntu22/breeze && \
+               rm -f ../ubuntu22/breeze.key && \
+               rm -f ./breeze && \
+               rm -f ./breeze.key"
             sudo chmod -R 755 ${PWD}/debs
             docker build -t wise2c/apt-source:aarch64-$CIRCLE_BRANCH .
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -816,26 +851,26 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build an aarch64 k8s container image
+          name: Build an amd64 k8s container image
           command: |
-            docker run -itd --name=base20 wise2c/apt-source:aarch64-base20
+            docker run -itd --name=base20 wise2c/apt-source:amd64-base20
             docker cp base20:/usr/share/nginx/html/debs base20
             docker stop base20 && docker rm base20
-            #docker run -itd --name=base22 wise2c/apt-source:aarch64-base22
-            #docker cp base22:/usr/share/nginx/html/debs base22
-            #docker stop base22 && docker rm base22
-            docker run -itd --name=ceph20 wise2c/apt-source:aarch64-ceph20
+            docker run -itd --name=base22 wise2c/apt-source:amd64-base22
+            docker cp base22:/usr/share/nginx/html/debs base22
+            docker stop base22 && docker rm base22
+            docker run -itd --name=ceph20 wise2c/apt-source:amd64-ceph20
             docker cp ceph20:/usr/share/nginx/html/debs ceph20
             docker stop ceph20 && docker rm ceph20
-            #docker run -itd --name=ceph22 wise2c/apt-source:aarch64-ceph22
-            #docker cp ceph22:/usr/share/nginx/html/debs ceph22
-            #docker stop ceph22 && docker rm ceph22
+            docker run -itd --name=ceph22 wise2c/apt-source:amd64-ceph22
+            docker cp ceph22:/usr/share/nginx/html/debs ceph22
+            docker stop ceph22 && docker rm ceph22
             mkdir -p ${PWD}/debs/ubuntu20
             mkdir -p ${PWD}/debs/ubuntu22
             mv base20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
-            #mv base22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
+            mv base22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
             mv ceph20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
-            #mv ceph22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
+            mv ceph22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
             sudo chmod +x ${PWD}/apt-download.sh
             docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
               "rm -f /etc/apt/apt.conf.d/docker-clean && \
@@ -844,7 +879,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-               add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
+               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
@@ -857,6 +892,41 @@ jobs:
                echo '##### list docker and kubernetes packages end #####' && \
                apt-ftparchive packages . > Packages && \
                apt-ftparchive release . > Release"
+            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
+              "echo 'apt-get updating...' && \
+               apt-get update > build.log 2>&1 && \
+               apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
+               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg && \
+               curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-jammy main" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
+               apt-get update > build.log 2>&1 && \
+               /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
+               rm -f /root/debs/ubuntu22/docker.io*.deb && \
+               cd /root/debs/ubuntu22 && \
+               apt-get download libseccomp2 libapt-pkg5.0 && \
+               echo '##### list docker and kubernetes packages begin #####' && \
+               ls | grep -E 'docker|kube' && \
+               echo '##### list docker and kubernetes packages end #####' && \
+               apt-ftparchive packages . > Packages && \
+               apt-ftparchive release . > Release && \
+               apt-get install -y gnupg gnupg2 > build.log 2>&1 && \
+               echo wise2cbreeze > ./breeze.key && \
+               cp /root/breeze ./ && \
+               gpg2 --batch --gen-key breeze && \
+               gpg2 --no-default-keyring --secret-keyring ./breeze.sec --keyring ./breeze.pub --list-secret-keys && \
+               gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release && \
+               gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release && \
+               cd /root/debs/ubuntu20 && \
+               cp ../ubuntu22/breeze.pub ./ && \
+               cp ../ubuntu22/breeze.key ./ && \
+               gpg2 --pinentry-mode loopback --passphrase-file=./breeze.key --keyring ./breeze.pub --clearsign -o InRelease Release && \
+               gpg2 -abs --keyring ./breeze.pub -o Release.gpg Release && \
+               rm -f ../ubuntu22/breeze && \
+               rm -f ../ubuntu22/breeze.key && \
+               rm -f ./breeze && \
+               rm -f ./breeze.key"
             sudo chmod -R 755 ${PWD}/debs
             docker build -t wise2c/apt-source:aarch64-$CIRCLE_TAG .
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
