@@ -758,9 +758,9 @@ workflows:
             - build-branches-amd64-ceph-ubuntu22
 
       - build-branches-aarch64-base-ubuntu20
-      #- build-branches-aarch64-base-ubuntu22
+      - build-branches-aarch64-base-ubuntu22
       - build-branches-aarch64-ceph-ubuntu20
-      #- build-branches-aarch64-ceph-ubuntu22
+      - build-branches-aarch64-ceph-ubuntu22
       - build-branches-aarch64-k8s-docker:
           requires:
             - build-branches-aarch64-base-ubuntu20
@@ -802,9 +802,9 @@ workflows:
       - build-tags-amd64-k8s-docker:
           requires:
             - build-tags-amd64-base-ubuntu20
-            #- build-tags-amd64-base-ubuntu22
+            - build-tags-amd64-base-ubuntu22
             - build-tags-amd64-ceph-ubuntu20
-            #- build-tags-amd64-ceph-ubuntu22
+            - build-tags-amd64-ceph-ubuntu22
           filters:
             tags:
               only: /^v.*/
@@ -817,24 +817,24 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-      #- build-tags-aarch64-base-ubuntu22:
-      #    filters:
-      #      tags:
-      #        only: /^v.*/
-      #      branches:
-      #        ignore: /.*/
+      - build-tags-aarch64-base-ubuntu22:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - build-tags-aarch64-ceph-ubuntu20:
           filters:
             tags:
               only: /^v.*/
             branches:
               ignore: /.*/
-      #- build-tags-aarch64-ceph-ubuntu22:
-      #    filters:
-      #      tags:
-      #        only: /^v.*/
-      #      branches:
-      #        ignore: /.*/
+      - build-tags-aarch64-ceph-ubuntu22:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - build-tags-aarch64-k8s-docker:
           requires:
             - build-tags-aarch64-base-ubuntu20
