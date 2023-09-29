@@ -806,7 +806,7 @@ jobs:
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
-               add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
+               add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu jammy stable' && \
                curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
                apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                apt-get update > build.log 2>&1 && \
@@ -902,7 +902,7 @@ jobs:
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
-               add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
+               add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu jammy stable' && \
                curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
                apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                apt-get update > build.log 2>&1 && \
