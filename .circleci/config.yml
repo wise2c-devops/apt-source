@@ -332,7 +332,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-jammy main" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-jammy main' | tee /etc/apt/sources.list.d/kubernetes.list && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
                echo '####################################### debug 111111111111111 ########################################' && \
                apt-get update > build.log 2>&1 && \
