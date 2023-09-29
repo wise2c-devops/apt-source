@@ -762,16 +762,16 @@ jobs:
       - run:
           name: Build an aarch64 k8s container image
           command: |
-            docker run -itd --name=base20 wise2c/apt-source:amd64-base20
+            docker run -itd --name=base20 wise2c/apt-source:aarch64-base20
             docker cp base20:/usr/share/nginx/html/debs base20
             docker stop base20 && docker rm base20
-            docker run -itd --name=base22 wise2c/apt-source:amd64-base22
+            docker run -itd --name=base22 wise2c/apt-source:aarch64-base22
             docker cp base22:/usr/share/nginx/html/debs base22
             docker stop base22 && docker rm base22
-            docker run -itd --name=ceph20 wise2c/apt-source:amd64-ceph20
+            docker run -itd --name=ceph20 wise2c/apt-source:aarch64-ceph20
             docker cp ceph20:/usr/share/nginx/html/debs ceph20
             docker stop ceph20 && docker rm ceph20
-            docker run -itd --name=ceph22 wise2c/apt-source:amd64-ceph22
+            docker run -itd --name=ceph22 wise2c/apt-source:aarch64-ceph22
             docker cp ceph22:/usr/share/nginx/html/debs ceph22
             docker stop ceph22 && docker rm ceph22
             mkdir -p ${PWD}/debs/ubuntu20
@@ -788,7 +788,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
+               add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
@@ -806,7 +806,7 @@ jobs:
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
-               add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
+               add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
                curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
                apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                apt-get update > build.log 2>&1 && \
@@ -858,16 +858,16 @@ jobs:
       - run:
           name: Build an aarch64 k8s container image
           command: |
-            docker run -itd --name=base20 wise2c/apt-source:amd64-base20
+            docker run -itd --name=base20 wise2c/apt-source:aarch64-base20
             docker cp base20:/usr/share/nginx/html/debs base20
             docker stop base20 && docker rm base20
-            docker run -itd --name=base22 wise2c/apt-source:amd64-base22
+            docker run -itd --name=base22 wise2c/apt-source:aarch64-base22
             docker cp base22:/usr/share/nginx/html/debs base22
             docker stop base22 && docker rm base22
-            docker run -itd --name=ceph20 wise2c/apt-source:amd64-ceph20
+            docker run -itd --name=ceph20 wise2c/apt-source:aarch64-ceph20
             docker cp ceph20:/usr/share/nginx/html/debs ceph20
             docker stop ceph20 && docker rm ceph20
-            docker run -itd --name=ceph22 wise2c/apt-source:amd64-ceph22
+            docker run -itd --name=ceph22 wise2c/apt-source:aarch64-ceph22
             docker cp ceph22:/usr/share/nginx/html/debs ceph22
             docker stop ceph22 && docker rm ceph22
             mkdir -p ${PWD}/debs/ubuntu20
@@ -884,7 +884,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
+               add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
                cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
@@ -902,7 +902,7 @@ jobs:
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
-               add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
+               add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
                curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
                apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                apt-get update > build.log 2>&1 && \
