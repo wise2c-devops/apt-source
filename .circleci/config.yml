@@ -334,6 +334,7 @@ jobs:
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-jammy main" | tee /etc/apt/sources.list.d/kubernetes.list && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
+               echo '###############################################################debug!!!!!!!!!!!!!!!!!!!!!!!!!!!!###########################################' && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
