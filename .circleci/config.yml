@@ -345,6 +345,8 @@ jobs:
                echo '##### list docker and kubernetes packages end #####' && \
                apt-ftparchive packages . > Packages && \
                apt-ftparchive release . > Release && \
+               ls /root/debs/ubuntu22/Packages && \
+               ls /root/debs/ubuntu22/Release && \
                apt-get install -y gnupg gnupg2 > build.log 2>&1 && \
                echo wise2cbreeze > ./breeze.key && \
                cp /root/breeze ./ && \
