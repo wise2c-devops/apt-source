@@ -326,15 +326,17 @@ jobs:
                echo '##### list docker and kubernetes packages end #####' && \
                apt-ftparchive packages . > Packages && \
                apt-ftparchive release . > Release"
+               echo '###############################################################debug!!!!!!!!!!!!!!!!!!!!!!!!!!!!###########################################' && \
             docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
-              "echo 'apt-get updating...' && \
+              "echo '###############################################################debug2222222222222222222222222222###########################################' && \
+               echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
+               echo '###############################################################debug3333333333333333333333333333###########################################' && \
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-jammy main" | tee /etc/apt/sources.list.d/kubernetes.list && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable' && \
-               echo '###############################################################debug!!!!!!!!!!!!!!!!!!!!!!!!!!!!###########################################' && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
