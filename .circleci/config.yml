@@ -339,7 +339,7 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                rm -f /root/debs/ubuntu22/docker.io*.deb && \
                cd /root/debs/ubuntu22 && \
-               apt-get download libseccomp2 libapt-pkg && \
+               apt-get download libseccomp2 libapt-pkg6.0 && \
                echo '##### list docker and kubernetes packages begin #####' && \
                ls | grep -E 'docker|kube' && \
                echo '##### list docker and kubernetes packages end #####' && \
@@ -434,7 +434,7 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                rm -f /root/debs/ubuntu22/docker.io*.deb && \
                cd /root/debs/ubuntu22 && \
-               apt-get download libseccomp2 libapt-pkg && \
+               apt-get download libseccomp2 libapt-pkg6.0 && \
                echo '##### list docker and kubernetes packages begin #####' && \
                ls | grep -E 'docker|kube' && \
                echo '##### list docker and kubernetes packages end #####' && \
@@ -812,7 +812,7 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                rm -f /root/debs/ubuntu22/docker.io*.deb && \
                cd /root/debs/ubuntu22 && \
-               apt-get download libseccomp2 libapt-pkg && \
+               apt-get download libseccomp2 libapt-pkg6.0 && \
                echo '##### list docker and kubernetes packages begin #####' && \
                ls | grep -E 'docker|kube' && \
                echo '##### list docker and kubernetes packages end #####' && \
@@ -906,7 +906,7 @@ jobs:
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                rm -f /root/debs/ubuntu22/docker.io*.deb && \
                cd /root/debs/ubuntu22 && \
-               apt-get download libseccomp2 libapt-pkg && \
+               apt-get download libseccomp2 libapt-pkg6.0 && \
                echo '##### list docker and kubernetes packages begin #####' && \
                ls | grep -E 'docker|kube' && \
                echo '##### list docker and kubernetes packages end #####' && \
