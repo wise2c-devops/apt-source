@@ -331,9 +331,9 @@ jobs:
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
-               add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
+               add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
                curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
-               apt-add-repository 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
+               apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                echo '####################################### debug 111111111111111 ########################################' && \
                apt-get update > build.log 2>&1 && \
                echo '####################################### debug 222222222222222 ########################################' && \
