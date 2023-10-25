@@ -23,8 +23,8 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -57,8 +57,8 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -91,8 +91,8 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -126,8 +126,8 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -480,8 +480,8 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -515,8 +515,8 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -550,8 +550,8 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -585,8 +585,8 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
