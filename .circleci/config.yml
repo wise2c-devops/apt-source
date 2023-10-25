@@ -2,7 +2,7 @@ jobs:
   build-branches-amd64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.28.2-00'
+      KUBE_VERSION: '1.28.3-00'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
@@ -21,12 +21,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -57,12 +55,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -93,12 +89,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -130,12 +124,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -306,15 +298,15 @@ jobs:
             mv ceph20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
             mv ceph22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
             sudo chmod +x ${PWD}/apt-download.sh
-            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
+            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
               "rm -f /etc/apt/apt.conf.d/docker-clean && \
                echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
-               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
-               cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -326,14 +318,14 @@ jobs:
                echo '##### list docker and kubernetes packages end #####' && \
                apt-ftparchive packages . > Packages && \
                apt-ftparchive release . > Release"
-            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
+            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
-               curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
-               apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -401,15 +393,15 @@ jobs:
             mv ceph20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
             mv ceph22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
             sudo chmod +x ${PWD}/apt-download.sh
-            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
+            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
               "rm -f /etc/apt/apt.conf.d/docker-clean && \
                echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
-               curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
-               cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -421,14 +413,14 @@ jobs:
                echo '##### list docker and kubernetes packages end #####' && \
                apt-ftparchive packages . > Packages && \
                apt-ftparchive release . > Release"
-            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
+            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
-               curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
-               apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -486,12 +478,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -523,12 +513,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -560,12 +548,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -597,12 +583,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:v${K8S_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o cri-o-runc podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -781,7 +765,7 @@ jobs:
             mv ceph20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
             mv ceph22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
             sudo chmod +x ${PWD}/apt-download.sh
-            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
+            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
               "rm -f /etc/apt/apt.conf.d/docker-clean && \
                echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
@@ -789,7 +773,6 @@ jobs:
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
-               cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -801,14 +784,12 @@ jobs:
                echo '##### list docker and kubernetes packages end #####' && \
                apt-ftparchive packages . > Packages && \
                apt-ftparchive release . > Release"
-            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
+            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu jammy stable' && \
-               curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
-               apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -877,7 +858,7 @@ jobs:
             mv ceph20/ubuntu20/*.deb ${PWD}/debs/ubuntu20/
             mv ceph22/ubuntu22/*.deb ${PWD}/debs/ubuntu22/
             sudo chmod +x ${PWD}/apt-download.sh
-            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
+            docker run -t --rm -e DEBIAN_FRONTEND=noninteractive -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:20.04 bash -c \
               "rm -f /etc/apt/apt.conf.d/docker-clean && \
                echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
@@ -885,7 +866,6 @@ jobs:
                curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
-               cp /root/kubernetes.list /etc/apt/sources.list.d/ && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -897,14 +877,12 @@ jobs:
                echo '##### list docker and kubernetes packages end #####' && \
                apt-ftparchive packages . > Packages && \
                apt-ftparchive release . > Release"
-            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/kubernetes.list:/root/kubernetes.list -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
+            docker run -t --rm -v ${PWD}/debs:/root/debs -v ${PWD}/apt-download.sh:/root/apt-download.sh -v ${PWD}/breeze-keygen.txt:/root/breeze ubuntu:22.04 bash -c \
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu jammy stable' && \
-               curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-xenial.gpg  && \
-               apt-add-repository -y 'deb http://apt.kubernetes.io/ kubernetes-xenial main' && \
                apt-get update > build.log 2>&1 && \
                /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.22.04~jammy docker-ce=${DOCKER_VERSION}~ubuntu.22.04~jammy kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
