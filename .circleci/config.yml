@@ -5,8 +5,7 @@ jobs:
       KUBE_VERSION: '1.28.3-00'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
-      OS20: 'xUbuntu_20.04'
-      K8S_MAIN_VERSION: '1.28'      
+      OS20: 'xUbuntu_20.04'      
     machine: true
     steps:
       - checkout
@@ -21,10 +20,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -39,8 +38,7 @@ jobs:
       KUBE_VERSION: '1.28.2-00'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
-      OS20: 'xUbuntu_20.04'
-      K8S_MAIN_VERSION: '1.28'            
+      OS20: 'xUbuntu_20.04'      
     machine: true
     steps:
       - checkout
@@ -55,10 +53,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -74,7 +72,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     machine: true
     steps:
       - checkout
@@ -89,10 +86,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -109,7 +106,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     machine: true
     steps:
       - checkout
@@ -124,10 +120,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -144,7 +140,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     machine: true
     steps:
       - checkout
@@ -177,7 +172,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     machine: true
     steps:
       - checkout
@@ -210,7 +204,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     machine: true
     steps:
       - checkout
@@ -241,7 +234,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     machine: true
     steps:
       - checkout
@@ -272,7 +264,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     machine: true
     steps:
       - checkout
@@ -303,8 +294,8 @@ jobs:
                echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
                apt-get update > build.log 2>&1 && \
@@ -322,8 +313,8 @@ jobs:
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
                apt-get update > build.log 2>&1 && \
@@ -367,7 +358,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     machine: true
     steps:
       - checkout
@@ -398,8 +388,8 @@ jobs:
                echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
                apt-get update > build.log 2>&1 && \
@@ -417,8 +407,8 @@ jobs:
               "echo 'apt-get updating...' && \
                apt-get update > build.log 2>&1 && \
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
                apt-get update > build.log 2>&1 && \
@@ -462,7 +452,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -478,10 +467,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -497,7 +486,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -513,10 +501,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -532,7 +520,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -548,10 +535,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -567,7 +554,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -583,10 +569,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
-               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v${K8S_MAIN_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list && \
+               curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
+               echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update && \
                /root/apt-download-without-version.sh "cri-o podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -602,7 +588,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -636,7 +621,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -670,7 +654,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -704,7 +687,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -738,7 +720,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
@@ -831,7 +812,6 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'      
-      K8S_MAIN_VERSION: '1.28'      
     resource_class: arm.medium
     machine: true
     steps:
