@@ -314,6 +314,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
+               mkdir -p /etc/apt/keyrings/ && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/$PROJECT_PATH/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
@@ -335,6 +336,7 @@ jobs:
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
+               mkdir -p /etc/apt/keyrings/ && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/$PROJECT_PATH/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
@@ -414,6 +416,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && \
+               mkdir -p /etc/apt/keyrings/ && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/$PROJECT_PATH/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
@@ -435,6 +438,7 @@ jobs:
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable' && \
+               mkdir -p /etc/apt/keyrings/ && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/$PROJECT_PATH/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
@@ -799,6 +803,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
+               mkdir -p /etc/apt/keyrings/ && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/$PROJECT_PATH/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
@@ -820,6 +825,7 @@ jobs:
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu jammy stable' && \
+               mkdir -p /etc/apt/keyrings/ && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/$PROJECT_PATH/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
@@ -900,6 +906,7 @@ jobs:
                apt-get install -y apt-transport-https curl software-properties-common apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
                add-apt-repository 'deb [arch=arm64] https://download.docker.com/linux/ubuntu focal stable' && \
+               mkdir -p /etc/apt/keyrings/ && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/$PROJECT_PATH/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
@@ -921,6 +928,7 @@ jobs:
                apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates apt-utils > build.log 2>&1 && \
                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
                add-apt-repository -y 'deb [arch=arm64] https://download.docker.com/linux/ubuntu jammy stable' && \
+               mkdir -p /etc/apt/keyrings/ && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/$PROJECT_PATH/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
