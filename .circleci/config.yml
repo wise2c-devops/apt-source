@@ -6,7 +6,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     machine: true
     steps:
       - checkout
@@ -42,7 +42,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     machine: true
     steps:
       - checkout
@@ -78,7 +78,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     machine: true
     steps:
       - checkout
@@ -115,7 +115,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     machine: true
     steps:
       - checkout
@@ -152,7 +152,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     machine: true
     steps:
       - checkout
@@ -185,7 +185,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     machine: true
     steps:
       - checkout
@@ -218,7 +218,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     machine: true
     steps:
       - checkout
@@ -249,7 +249,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     machine: true
     steps:
       - checkout
@@ -280,7 +280,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
       PROJECT_PATH: 'prerelease:/v1.28'
     machine: true
     steps:
@@ -382,7 +382,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
       PROJECT_PATH: 'prerelease:/v1.28'
     machine: true
     steps:
@@ -484,7 +484,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -521,7 +521,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -558,7 +558,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -595,7 +595,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -632,7 +632,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -666,7 +666,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -700,7 +700,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -734,7 +734,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -768,7 +768,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
       PROJECT_PATH: 'prerelease:/v1.28'
     resource_class: arm.medium
     machine: true
@@ -871,7 +871,7 @@ jobs:
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.28'
+      K8S_VERSION: 'v1.28'
       PROJECT_PATH: 'prerelease:/v1.28'
     resource_class: arm.medium
     machine: true
