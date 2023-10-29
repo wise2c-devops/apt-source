@@ -281,7 +281,7 @@ jobs:
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: 'v1.27'
-      PROJECT_PATH: 'prerelease:/v1.27'
+      PROJECT_PATH: 'prerelease:/v1.28'
     machine: true
     steps:
       - checkout
@@ -383,7 +383,7 @@ jobs:
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: 'v1.27'
-      PROJECT_PATH: 'prerelease:/v1.27'
+      PROJECT_PATH: 'prerelease:/v1.28'
     machine: true
     steps:
       - checkout
@@ -769,7 +769,7 @@ jobs:
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: 'v1.27'
-      PROJECT_PATH: 'prerelease:/v1.27'
+      PROJECT_PATH: 'prerelease:/v1.28'
     resource_class: arm.medium
     machine: true
     steps:
@@ -872,7 +872,7 @@ jobs:
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
       K8S_VERSION: 'v1.27'
-      PROJECT_PATH: 'prerelease:/v1.27'
+      PROJECT_PATH: 'prerelease:/v1.28'
     resource_class: arm.medium
     machine: true
     steps:
