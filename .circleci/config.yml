@@ -28,7 +28,7 @@ jobs:
                curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
                curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
                apt-get update && \
-               /root/apt-download-without-version.sh "podman" && \
+               /root/apt-download-without-version.sh "cri-o cri-o-crun podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                ls /root/debs/ubuntu20/'
             docker build -t wise2c/apt-source:amd64-base20 .
@@ -100,7 +100,7 @@ jobs:
                curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
                curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
                apt-get update && \
-               /root/apt-download-without-version.sh "podman" && \
+               /root/apt-download-without-version.sh "cri-o cri-o-crun podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                ls /root/debs/ubuntu22 && \
                cd /root/debs/ubuntu22'
@@ -320,7 +320,7 @@ jobs:
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/'${PROJECT_PATH}'/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
                echo 'deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/'${PROJECT_PATH}'/deb/ /' | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'cri-o python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                rm -f /root/debs/ubuntu20/docker.io*.deb && \
                cd /root/debs/ubuntu20 && \
@@ -507,7 +507,7 @@ jobs:
                curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
                curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
                apt-get update && \
-               /root/apt-download-without-version.sh "podman" && \
+               /root/apt-download-without-version.sh "cri-o cri-o-crun podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                ls /root/debs/ubuntu20/'
             docker build -t wise2c/apt-source:aarch64-base20 .
@@ -544,7 +544,7 @@ jobs:
                curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
                curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
                apt-get update && \
-               /root/apt-download-without-version.sh "podman" && \
+               /root/apt-download-without-version.sh "cri-o cri-o-crun podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                ls /root/debs/ubuntu22/'
             docker build -t wise2c/apt-source:aarch64-base22 .
@@ -809,7 +809,7 @@ jobs:
                curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/'${PROJECT_PATH}'/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg && \
                echo 'deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/'${PROJECT_PATH}'/deb/ /' | tee /etc/apt/sources.list.d/cri-o.list && \
                apt-get update > build.log 2>&1 && \
-               /root/apt-download.sh 'cri-o python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
+               /root/apt-download.sh 'python3-apt docker-ce-cli=${DOCKER_VERSION}~ubuntu.20.04~focal docker-ce=${DOCKER_VERSION}~ubuntu.20.04~focal kubelet=${KUBE_VERSION} kubectl=${KUBE_VERSION} kubeadm=${KUBE_VERSION}' && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                rm -f /root/debs/ubuntu20/docker.io*.deb && \
                cd /root/debs/ubuntu20 && \
