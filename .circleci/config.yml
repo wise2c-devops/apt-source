@@ -2,11 +2,11 @@ jobs:
   build-branches-amd64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     machine: true
     steps:
       - checkout
@@ -38,11 +38,11 @@ jobs:
   build-tags-amd64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     machine: true
     steps:
       - checkout
@@ -74,11 +74,11 @@ jobs:
   build-branches-amd64-base-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     machine: true
     steps:
       - checkout
@@ -111,11 +111,11 @@ jobs:
   build-tags-amd64-base-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     machine: true
     steps:
       - checkout
@@ -148,11 +148,11 @@ jobs:
   build-branches-amd64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     machine: true
     steps:
       - checkout
@@ -181,11 +181,11 @@ jobs:
   build-tags-amd64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     machine: true
     steps:
       - checkout
@@ -214,11 +214,11 @@ jobs:
   build-branches-amd64-ceph-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     machine: true
     steps:
       - checkout
@@ -245,11 +245,11 @@ jobs:
   build-tags-amd64-ceph-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     machine: true
     steps:
       - checkout
@@ -276,7 +276,7 @@ jobs:
   build-branches-amd64-k8s-docker:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
@@ -378,7 +378,7 @@ jobs:
   build-tags-amd64-k8s-docker:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
@@ -480,11 +480,11 @@ jobs:
   build-branches-aarch64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     resource_class: arm.medium
     machine: true
     steps:
@@ -517,11 +517,11 @@ jobs:
   build-branches-aarch64-base-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     resource_class: arm.medium
     machine: true
     steps:
@@ -554,11 +554,11 @@ jobs:
   build-tags-aarch64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     resource_class: arm.medium
     machine: true
     steps:
@@ -591,11 +591,11 @@ jobs:
   build-tags-aarch64-base-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     resource_class: arm.medium
     machine: true
     steps:
@@ -628,11 +628,11 @@ jobs:
   build-branches-aarch64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     resource_class: arm.medium
     machine: true
     steps:
@@ -662,11 +662,11 @@ jobs:
   build-branches-aarch64-ceph-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     resource_class: arm.medium
     machine: true
     steps:
@@ -696,11 +696,11 @@ jobs:
   build-tags-aarch64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     resource_class: arm.medium
     machine: true
     steps:
@@ -730,11 +730,11 @@ jobs:
   build-tags-aarch64-ceph-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.25'
+      K8S_VERSION: '1.26'
     resource_class: arm.medium
     machine: true
     steps:
@@ -764,7 +764,7 @@ jobs:
   build-branches-aarch64-k8s-docker:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
@@ -867,7 +867,7 @@ jobs:
   build-tags-aarch64-k8s-docker:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.26.13-1.1'
+      KUBE_VERSION: '1.26.10-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
