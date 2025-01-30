@@ -21,12 +21,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               cat /etc/apt/sources.list.d/kubernetes.list && \
+               mkdir /etc/apt/keyrings && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -57,12 +55,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               cat /etc/apt/sources.list.d/kubernetes.list && \
+               mkdir /etc/apt/keyrings && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -93,12 +89,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               cat /etc/apt/sources.list.d/kubernetes.list && \
+               mkdir /etc/apt/keyrings && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -130,12 +124,10 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable.list && \
-               echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               cat /etc/apt/sources.list.d/devel-kubic-libcontainers-stable-cri-o.list && \
-               curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add - && \
-               curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers-cri-o.gpg add - && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               cat /etc/apt/sources.list.d/kubernetes.list && \
+               mkdir /etc/apt/keyrings && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
