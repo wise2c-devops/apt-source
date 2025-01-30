@@ -2,11 +2,11 @@ jobs:
   build-branches-amd64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     machine: true
     steps:
       - checkout
@@ -21,10 +21,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_20.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \
                apt-get update && \
@@ -38,11 +38,11 @@ jobs:
   build-tags-amd64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     machine: true
     steps:
       - checkout
@@ -57,10 +57,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_20.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \
                apt-get update && \
@@ -74,11 +74,11 @@ jobs:
   build-branches-amd64-base-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     machine: true
     steps:
       - checkout
@@ -93,9 +93,9 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
                apt-get update && \
@@ -110,11 +110,11 @@ jobs:
   build-tags-amd64-base-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     machine: true
     steps:
       - checkout
@@ -129,9 +129,9 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
                apt-get update && \
@@ -146,11 +146,11 @@ jobs:
   build-branches-amd64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     machine: true
     steps:
       - checkout
@@ -179,11 +179,11 @@ jobs:
   build-tags-amd64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     machine: true
     steps:
       - checkout
@@ -212,11 +212,11 @@ jobs:
   build-branches-amd64-ceph-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     machine: true
     steps:
       - checkout
@@ -243,11 +243,11 @@ jobs:
   build-tags-amd64-ceph-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     machine: true
     steps:
       - checkout
@@ -274,12 +274,12 @@ jobs:
   build-branches-amd64-k8s-docker:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: 'v1.30'
-      PROJECT_PATH: 'prerelease:/v1.30'
+      K8S_VERSION: 'v1.31'
+      PROJECT_PATH: 'prerelease:/v1.31'
     machine: true
     steps:
       - checkout
@@ -376,12 +376,12 @@ jobs:
   build-tags-amd64-k8s-docker:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: 'v1.30'
-      PROJECT_PATH: 'prerelease:/v1.30'
+      K8S_VERSION: 'v1.31'
+      PROJECT_PATH: 'prerelease:/v1.31'
     machine: true
     steps:
       - checkout
@@ -478,11 +478,11 @@ jobs:
   build-branches-aarch64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -498,10 +498,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_20.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \
                apt-get update && \
@@ -515,11 +515,11 @@ jobs:
   build-branches-aarch64-base-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -535,9 +535,9 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
                apt-get update && \
@@ -551,11 +551,11 @@ jobs:
   build-tags-aarch64-base-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -571,10 +571,10 @@ jobs:
                mkdir /root/debs/ubuntu20 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_20.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \
                apt-get update && \
@@ -588,11 +588,11 @@ jobs:
   build-tags-aarch64-base-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -608,9 +608,9 @@ jobs:
                mkdir /root/debs/ubuntu22 && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
-               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
+               echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
-               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
                apt-get update && \
@@ -624,11 +624,11 @@ jobs:
   build-branches-aarch64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -658,11 +658,11 @@ jobs:
   build-branches-aarch64-ceph-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -692,11 +692,11 @@ jobs:
   build-tags-aarch64-ceph-ubuntu20:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -726,11 +726,11 @@ jobs:
   build-tags-aarch64-ceph-ubuntu22:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: '1.30'
+      K8S_VERSION: '1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -760,12 +760,12 @@ jobs:
   build-branches-aarch64-k8s-docker:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: 'v1.30'
-      PROJECT_PATH: 'prerelease:/v1.30'
+      K8S_VERSION: 'v1.31'
+      PROJECT_PATH: 'prerelease:/v1.31'
     resource_class: arm.medium
     machine: true
     steps:
@@ -863,12 +863,12 @@ jobs:
   build-tags-aarch64-k8s-docker:
     environment:
       CEPH_VERSION: '18.2.0'
-      KUBE_VERSION: '1.30.9-1.1'
+      KUBE_VERSION: '1.31.5-1.1'
       DOCKER_VERSION: '5:24.0.6-1'
       OS22: 'xUbuntu_22.04'
       OS20: 'xUbuntu_20.04'
-      K8S_VERSION: 'v1.30'
-      PROJECT_PATH: 'prerelease:/v1.30'
+      K8S_VERSION: 'v1.31'
+      PROJECT_PATH: 'prerelease:/v1.31'
     resource_class: arm.medium
     machine: true
     steps:
