@@ -95,7 +95,6 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
-               mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
@@ -132,7 +131,6 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
-               mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
@@ -539,7 +537,6 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
-               mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
@@ -613,7 +610,6 @@ jobs:
                apt-get update && apt-get install -y apt-transport-https curl software-properties-common apt-utils gnupg1 gnupg2 && \
                echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" > /etc/apt/sources.list.d/kubernetes.list && \
                cat /etc/apt/sources.list.d/kubernetes.list && \
-               mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
                echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
                curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
