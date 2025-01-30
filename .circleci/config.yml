@@ -25,6 +25,8 @@ jobs:
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
+               curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_20.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -59,6 +61,8 @@ jobs:
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
+               curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_20.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -93,6 +97,8 @@ jobs:
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
+               curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -128,6 +134,8 @@ jobs:
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
+               curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -496,6 +504,8 @@ jobs:
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
+               curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_20.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -531,6 +541,8 @@ jobs:
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
+               curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
@@ -566,6 +578,8 @@ jobs:
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
+               curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_20.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu20 && \
@@ -601,6 +615,8 @@ jobs:
                cat /etc/apt/sources.list.d/kubernetes.list && \
                mkdir /etc/apt/keyrings && \
                curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+               echo 'deb http://download.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /' > /etc/apt/sources.list.d/home:alvistack.list && \
+               curl -fsSL https://download.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor > /etc/apt/trusted.gpg.d/home_alvistack.gpg && \ 
                apt-get update && \
                /root/apt-download-without-version.sh "podman" && \
                mv /tmp/debs/*.deb /root/debs/ubuntu22 && \
